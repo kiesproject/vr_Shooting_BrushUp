@@ -13,6 +13,7 @@ public class GRgage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log("[GRgage] GM.Player: " + GameManager.instance.Player);
         player = GameManager.instance.Player.GetComponent<Player>();
 
         //緑HPバーの取得

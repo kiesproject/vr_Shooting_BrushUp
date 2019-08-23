@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+
         //Debug.Log("Trigger_missile: " + Missile_Trigger);
         
         {
@@ -233,5 +234,15 @@ public class GameManager : MonoBehaviour
         if (TargetEnemyList.Contains(o))
             TargetEnemyList.Remove(o);
     }
+
+    /// <summary>
+    /// プレイヤーを取得する。()
+    /// </summary>
+    public void Player_Update()
+    {
+
+        Player = GameObject.Find("Player");
+    }
+
 
 }

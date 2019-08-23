@@ -36,7 +36,7 @@ public class Player : AirFighter
     {
         GM = GameManager.instance;
 
-        Debug.Log("[Player] " + GM.gameObject.name);
+        //Debug.Log("[Player] " + GM.gameObject.name);
         if (GM.Player == this.gameObject)
             GM.Player = this.gameObject;
 
@@ -131,5 +131,4 @@ public class Player : AirFighter
         isDebuff = true;
         debuffTime = 0;
     }
-
 }
