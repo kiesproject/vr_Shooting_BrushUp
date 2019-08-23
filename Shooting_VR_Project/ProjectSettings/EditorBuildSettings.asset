@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: a78e09c7136cc6443b9fd6fa2568bd00
   - enabled: 1
+    path: Assets/Scenes/Stages/boss.unity
+    guid: 5e542ad34e20b0b468233809de955d91
+  - enabled: 1
     path: Assets/Scenes/Stages/wave0.unity
     guid: 5b5d22b7260d5b140a9aa169cab0ec0d
   - enabled: 1
@@ -35,7 +38,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stages/wave6.unity
     guid: fbea2ea2b90ac0743b1e0edeab7c12fa
-  - enabled: 1
-    path: Assets/Scenes/OP.unity
-    guid: bca13767dc714b84fbd6bcb97f718f89
   m_configObjects: {}

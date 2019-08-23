@@ -21,9 +21,13 @@ public class Missile_Bullet : Bullet
     private Vector3 poss4;
     //--------------------
 
+    Vector3 rndV;
+
     protected override void Start()
     {
         base.Start();
+        rndV = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+
     }
 
     protected override void Update(){
@@ -33,14 +37,14 @@ public class Missile_Bullet : Bullet
     protected override void FixedUpdate()
     {
         if (target == null) return;
-        Debug.Log(target);
+        //Debug.Log(target);
 
         if(missile_timer <= overtime ) //直進
         {
             addspeed += 0.001f;
             missile_timer += Time.deltaTime * 0.1f + addspeed;//タイマー
 
-            transform.position += transform.forward; //直進
+            transform.position += transform.forward + rndV; //直進
             return;
         }
         else //追跡
@@ -56,7 +60,7 @@ public class Missile_Bullet : Bullet
                 target = null;
                 Explosion();
             }
-            mtime += Time.deltaTime;
+            mtime += Time.deltaTime * 1.5f;
             if (mtime >= 1) //ターゲットまでたどり着いたらダメージを与える。
             {
                 Damage();
@@ -89,7 +93,7 @@ public class Missile_Bullet : Bullet
     //第二地点の計算
     Vector3 GetPoss2(float l)
     {
-        Vector3 vector = new Vector3(Random.Range(-4, 4), Random.Range(-4, 4), Random.Range(-4, 4));
+        Vector3 vector = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
         return transform.forward * l + transform.position + vector ;
     }
 
@@ -117,7 +121,7 @@ public class Missile_Bullet : Bullet
     void Damage()
     {
         var air = target.GetComponent<AirFighter>();
-        Debug.Log("ダメージ(missile)");
+        //Debug.Log("ダメージ(missile)");
         //ダメージを与える
         air.Damage(damege);
         Explosion();

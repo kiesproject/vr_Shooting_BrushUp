@@ -19,15 +19,15 @@ public class BeamAttack : Player
 
     private void OnParticleCollision(GameObject obj)
     {
-        Debug.Log("ビームが当たった1");
+        //Debug.Log("ビームが当たった1");
         if (obj.gameObject.GetComponent<AirFighter>() != null)
         {
-            Debug.Log("ビームが当たった2");
+            //Debug.Log("ビームが当たった2");
             AirFighter fighter = obj.gameObject.GetComponent<AirFighter>();
 
             if (CompareLayer(layer, obj.gameObject.layer))
             {
-                Debug.Log("ビームが当たった3");
+                //Debug.Log("ビームが当たった3");
                 //ダメージを与える
                 fighter.Damage(damege);
             }

@@ -74,7 +74,7 @@ public class Buff_Enemy : AirFighter
     protected override void Shooting_down()
     {
         base.Shooting_down();
-        GameManager.instance.Enemy_Down_Count();
+        //GameManager.instance.Enemy_Down_Count();
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
 

@@ -94,7 +94,10 @@ public class GameManager : MonoBehaviour
 
     public void Enemy_Down_Count()
     {
+
         downCount++;
+        Debug.Log("[GameManager] <"+ gameObject.name +"> カウント後 " + downCount + "体撃破");
+
     }
 
 
@@ -109,6 +112,9 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        Player = GameObject.Find("Player");
+
     }
 
 
@@ -122,7 +128,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        Debug.Log("Trigger_missile: " + Missile_Trigger);
+        //Debug.Log("Trigger_missile: " + Missile_Trigger);
         
         {
             //自動で戻す奴
@@ -138,7 +144,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetKey(KeyCode.V))
             { 
                 Shoot_Trigger = true; //ショットを発射
-                Debug.Log("発射よ！！");
+                //Debug.Log("発射よ！！");
             }
             else
             {
@@ -152,7 +158,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        Debug.Log(Weapon_Switch);
+        //Debug.Log(Weapon_Switch);
     }
 
     //--------------------入力-----------------------

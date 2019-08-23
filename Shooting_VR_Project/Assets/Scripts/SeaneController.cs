@@ -41,7 +41,7 @@ public class SeaneController : MonoBehaviour
         //先頭のシーン以外はアンロード(1からスタート)
         for (int i = 1; i < _sceneSequence.Length; i++)
         {
-            SceneManager.UnloadSceneAsync(_sceneSequence[i]);
+            //SceneManager.UnloadSceneAsync(_sceneSequence[i]);
         }
 
         //デバッグ用

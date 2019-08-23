@@ -109,14 +109,16 @@ public class missileManager : MonoBehaviour
             for(int y = 0; y < VerWidth; y++) //縦
             {
                 Transform tr = BasePoss;
-                tr.position = tr.transform.position + new Vector3(x * Interval, y * Interval, 0);
+                tr.position = tr.transform.position; // + new Vector3(x * Interval, y * Interval, 0);
 
-                GameObject missle = Instantiate(missile, new Vector3(x * Interval, y * Interval, 0) + BasePoss.position, BasePoss.rotation) as GameObject;
+                GameObject missle = Instantiate(missile, new Vector3(0, x * Interval,y * Interval) + BasePoss.position, BasePoss.rotation) as GameObject;
+                missile.transform.rotation = Quaternion.Euler(missile.transform.rotation.eulerAngles + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f)));
                 //Missile missile_c = missile.GetComponent<Missile>();
                 //missile_c.Shoot(SelectMis(x + y));
                 Missile_Bullet missile_c = missile.GetComponent<Missile_Bullet>();
                 if (missile_c == null) Debug.Log("入ってない");
-                missile_c.SetTarget(SelectMis(x + y));
+                missile_c.SetTarget(SelectMis(x * Width + y));
+                Debug.Log("[missileManager] 割り当て: " + (x * (Width-1) + y));
 
                 yield return new WaitForSeconds(0.1f);
                 //yield return null;

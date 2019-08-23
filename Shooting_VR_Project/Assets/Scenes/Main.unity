@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.46407077, g: 0.4638435, b: 0.59642315, a: 1}
+  m_IndirectSpecularColor: {r: 0.46409854, g: 0.46386313, b: 0.5964343, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -46456,6 +46456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBase
       objectReference: {fileID: 0}
+    - target: {fileID: 877265553, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8982631859389470792, guid: 35a8d91630626f346b932598d4b5c76e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46511,6 +46515,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7031424766655589200, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6484321225198367105, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982631859389470791, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982631859983737471, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5726242367975475813, guid: 35a8d91630626f346b932598d4b5c76e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -46521,15 +46545,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2054385793}
-    - target: {fileID: 8982631859389470791, guid: 35a8d91630626f346b932598d4b5c76e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031424766655589200, guid: 35a8d91630626f346b932598d4b5c76e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1951400315, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}
+      propertyPath: m_Name
+      value: SAKUSEN_KANRYO
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}

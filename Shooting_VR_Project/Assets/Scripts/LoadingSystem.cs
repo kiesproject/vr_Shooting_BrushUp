@@ -33,7 +33,7 @@ public class LoadingSystem : MonoBehaviour
         if(startbutton.fillAmount > 0.99)
         {
             GameManager.instance.GameState = 1;
-            SceneManager.LoadScene("OP");
+            SceneManager.LoadScene("Main");
             //SceneManager.LoadSceneAsync("wave0");
             //SceneManager.LoadSceneAsync("wave1");
             //SceneManager.LoadSceneAsync("wave2");

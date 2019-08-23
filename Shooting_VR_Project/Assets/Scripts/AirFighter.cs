@@ -17,7 +17,8 @@ public abstract class AirFighter : MonoBehaviour
     {
         isInvulnerable  = 1<<0,  // 1のとき不死身
         isIgnore        = 1<<1,  // 1のとき飛行命令を受け付けない
-        isFring         = 1<<2,  // 1のとき飛んでいるのかどうか
+        isFring         = 1<<2,  // 1のとき飛んでいる
+        isDead          = 1<<3,  // 1のとき死亡した
     }
 
     //プロパティ
@@ -79,11 +80,14 @@ public abstract class AirFighter : MonoBehaviour
     //死亡したかどうか
     protected void Down_Chack()
     {
-       if (this.hp <= 0)
+       if (this.hp <= 0 && (property & Property.isDead) != Property.isDead)
         {
             hp = 0;
-            Shooting_down();
+            property |= Property.isDead; //死亡状態にする
+            Debug.Log("[AirFighter] <" + gameObject.name + ">カウント前");
             GameManager.instance.Enemy_Down_Count();
+            Shooting_down();
+            
         }
     }
 

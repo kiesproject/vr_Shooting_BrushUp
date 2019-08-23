@@ -42,9 +42,8 @@ public class VR_Controller2 : MonoBehaviour
     void Update()
     {
         GetMove_Control(out hor, out ver);
-        if (!GM.VR_Swicth)
-        GM.Move_key(hor, ver);
-        Debug.Log("hor: " + hor + " | ver:" + ver);
+        if (GM.VR_Swicth)GM.Move_key(hor, ver);
+        //Debug.Log("hor: " + hor + " | ver:" + ver);
     }
 
     void GetMove_Control(out float x, out float y)

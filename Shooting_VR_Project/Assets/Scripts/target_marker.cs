@@ -10,7 +10,7 @@ public class target_marker : MonoBehaviour
     GameObject missile_crrent_target;
 
     bool visible = false; //写っているかどうか
-    float dis = 30;
+    float dis = 90;
 
     private void Awake()
     {

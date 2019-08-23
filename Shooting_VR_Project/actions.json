@@ -41,15 +41,6 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/default/in/menu",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/PlayerControl",
-      "type": "skeleton",
-      "skeleton": "/skeleton/hand/right"
-    },
-    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

@@ -67,6 +67,7 @@ public class Normal_Enemy : AirFighter
             //muzzle.transform.LookAt(Vector3.Lerp(target_2_v3, target_1_v3, shootTime));
             shootTime += Time.deltaTime;
         }
+        
         /*
         var v = player.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
         muzzle.transform.LookAt(v);
@@ -76,7 +77,7 @@ public class Normal_Enemy : AirFighter
     protected override void Shooting_down()
     {
         base.Shooting_down();
-        GameManager.instance.Enemy_Down_Count();
+        //GameManager.instance.Enemy_Down_Count();
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
 

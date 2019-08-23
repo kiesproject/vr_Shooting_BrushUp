@@ -27,13 +27,19 @@ public class Player : AirFighter
 
     private void Awake()
     {
-        GM = GameManager.instance;
-        GM.Player = this.gameObject;
+        //GM = GameManager.instance;
+        //GameManager.instance.Player = this.gameObject;
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        GM = GameManager.instance;
+
+        Debug.Log("[Player] " + GM.gameObject.name);
+        if (GM.Player == this.gameObject)
+            GM.Player = this.gameObject;
+
         max_hp = 40;
         hp = max_hp;
     }
@@ -50,7 +56,7 @@ public class Player : AirFighter
     {
 
 
-        Debug.Log("GM.Shoot_Trigger: " + GM.Shoot_Trigger);
+        //Debug.Log("GM.Shoot_Trigger: " + GM.Shoot_Trigger);
         //Debug.Log("shootNegativeFlag: " + shootNegativeFlag);
         if (GM.Shoot_Trigger  && !shootNegativeFlag)
         {

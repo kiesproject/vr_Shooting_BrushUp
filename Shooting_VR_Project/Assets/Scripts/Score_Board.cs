@@ -27,6 +27,8 @@ public class Score_Board : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        textMesh.text = "撃破数 " + GameManager.instance.downCount + "体";
+
         if (GameManager.instance.GameState != 2) return;
 
         time += Time.deltaTime;

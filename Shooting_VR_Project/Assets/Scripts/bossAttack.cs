@@ -54,20 +54,7 @@ public class bossAttack : AirFighter
     }
 
     protected override void Shooting_down(){
-        expltime += Time.deltaTime;
-        GameManager.instance.Enemy_Down_Count();
-
-        if (expltime >= 0.3f){
-            Explosion_mini();
-            expltime = 0;
-            c += 1;
-        }
         
-        if (c==10f)
-        {
-            GameManager.instance.GameState = 2;
-            Explosion();
-        }
     }
 
     private void Explosion()
@@ -225,15 +212,40 @@ public class bossAttack : AirFighter
         Instantiate(beam, beammuzzle4.transform.position, Quaternion.Euler(0, 270, 0));
     }
 
+    void DownAnimPlay()
+    {
+        expltime += Time.deltaTime;
+        //GameManager.instance.Enemy_Down_Count();
+
+        if (expltime >= 0.3f)
+        {
+            Explosion_mini();
+            expltime = 0;
+            c += 1;
+        }
+
+        if (c == 10f)
+        {
+            GameManager.instance.GameState = 2;
+            Explosion();
+        }
+    }
+
+
     protected override void Update()
     {
         base.Update();
-        transform.Rotate(Vector3.up * 3);
+
+        //ダウン時のアニメーション
+        if ((property & Property.isDead) == Property.isDead) DownAnimPlay();
+
+
+            transform.Rotate(Vector3.up * 3);
         //if (!boss_stopFlag) return;
 
         if (move == true) {
             timeee += Time.deltaTime / 5;
-            Debug.Log(first_poss);
+            //Debug.Log(first_poss);
             Boss.gameObject.transform.position = Vector3.Lerp(Boss.transform.position, target[v]+first_poss, timeee);
         }else
         {
@@ -263,7 +275,7 @@ public class bossAttack : AirFighter
 
         if (stoptime >= 3.0f && move == false)
         {
-            Debug.Log("aaa");
+            //Debug.Log("aaa");
             move = true;
             stoptime = 0;
         }
