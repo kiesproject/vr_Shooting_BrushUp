@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.shooting_vr_project.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\kiesVR\\Desktop\\develop_files\\Shooting_VR_Project\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Shooting_VR_Project [Testing]"
+        }
+      }
+    }
+  ]
+}
