@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bossAttack : AirFighter
+public class bossAttack : MonoBehaviour, IShootingDown
 {
     public GameObject bossmuzzle1;
     public GameObject bossmuzzle2;
@@ -37,14 +37,20 @@ public class bossAttack : AirFighter
 
     public bool boss_stopFlag = false;
 
+    //---- ---- ----- ----- ----- ----- ----- ----- ---- ----- ----- -----
+    [SerializeField]
+    private float max_hp = 20;
+    [SerializeField]
+    private float hp = 20;
+    private bool dead = false;
 
-    protected override void Start()
+
+    private void Start()
     {
 
         GetComponent<Boss_effect>().enabled = false;
 
         GameManager.instance.Enemy_Count();
-        base.Start();
         max_hp = 500;
         hp = max_hp;
 
@@ -53,8 +59,39 @@ public class bossAttack : AirFighter
         a = 0;
     }
 
-    protected override void Shooting_down(){
-        
+    public void Shooting_down()
+    {
+        GameManager.instance.Enemy_Down_Count();
+
+    }
+
+    //ダメージを与える
+    public void Damage(float damage)
+    {
+        //HPからダメージ分減らす
+        hp -= damage;
+        //撃墜判定
+        Down_Chack();
+    }
+
+    //死亡したかどうか
+    protected void Down_Chack()
+    {
+        if (this.hp <= 0 && !dead)
+        {
+            hp = 0;
+            dead = true;
+            Shooting_down();
+        }
+    }
+
+    public float Get_Max_Hp()
+    {
+        return max_hp;
+    }
+    public float Get_Hp()
+    {
+        return hp;
     }
 
     private void Explosion()
@@ -232,12 +269,11 @@ public class bossAttack : AirFighter
     }
 
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
 
         //ダウン時のアニメーション
-        if ((property & Property.isDead) == Property.isDead) DownAnimPlay();
+        if (dead) DownAnimPlay();
 
 
             transform.Rotate(Vector3.up * 3);

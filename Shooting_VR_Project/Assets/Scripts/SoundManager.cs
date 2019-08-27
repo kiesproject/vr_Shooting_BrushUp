@@ -15,6 +15,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     GameObject soundObject;
 
+    [SerializeField]
+    bool beepAccept = true;
+
     Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
     AudioSource source;
 
@@ -61,6 +64,7 @@ public class SoundManager : MonoBehaviour
     //音を生成
     public void Instance_Sound(Vector3 wroldPoos, string name, float pitch)
     {
+        if (!beepAccept) return;
         GameObject s = Instantiate(soundObject, wroldPoos, Quaternion.identity);
         AudioSource audioSource = s.GetComponent<AudioSource>();
         audioSource.pitch = pitch;

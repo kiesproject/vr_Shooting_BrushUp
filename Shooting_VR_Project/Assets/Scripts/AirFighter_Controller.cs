@@ -1,31 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEditorInternal;
 #endif
 
-
-public abstract class AirFighter : MonoBehaviour, IShootingDown
+public class AirFighter_Controller : MonoBehaviour
 {
-    //プロパティ用のフラグ
-    [Flags]
-    public enum Property
-    {
-        isInvulnerable  = 1<<0,  // 1のとき不死身
-        isIgnore        = 1<<1,  // 1のとき飛行命令を受け付けない
-        isFring         = 1<<2,  // 1のとき飛んでいる
-        isDead          = 1<<3,  // 1のとき死亡した
-    }
-
-    //プロパティ
-    [HideInInspector]
-    public Property property = 0;
-
-    //--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
     //飛行ルート
     [HideInInspector]
@@ -33,96 +14,38 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
 
     //飛行スピード
     [SerializeField]
-    protected float airFighter_speed = 1.0f;
+    public float airFighter_speed = 1.0f;
 
     //目標座標
-    protected List<Vector3> target_vector3s;
+    private List<Vector3> target_vector3s;
 
-    //--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    //飛行しているか
+    private bool isFring = false;
 
-    //戦闘機のHP
-    [SerializeField]
-    protected float hp = 10;
-    [SerializeField,]
-    protected float max_hp = 10;
-
-    public float Get_Hp()
-    {
-        return this.hp;
-    }
-    public float Get_Max_Hp()
-    {
-        return this.max_hp;
-    }
-
-    //--- エディター用のフィールド --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
-    [HideInInspector] public bool onGizmo = false;
-    [HideInInspector] public bool onHandle = false;
-    [HideInInspector] public Vector3 Edi_start_Poss;
-    
-    protected virtual void Start()
-    {
-        Edi_start_Poss = transform.position;
-
-    }
-
-    protected virtual void Update()
-    {
-        Down_Chack(); //撃墜判定
-
-    }
-
-    protected virtual void FixedUpdate()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }
 
-    //死亡したかどうか
-    protected void Down_Chack()
+    // Update is called once per frame
+    void Update()
     {
-       if (this.hp <= 0 && (property & Property.isDead) != Property.isDead)
-        {
-            hp = 0;
-            property |= Property.isDead; //死亡状態にする
-            Debug.Log("[AirFighter] <" + gameObject.name + ">カウント前");
-            GameManager.instance.Enemy_Down_Count();
-            Shooting_down();
-            
-        }
-    }
-
-    //死亡
-    public virtual void Shooting_down()
-    {
-        //HPがゼロになった時の処理
-    }
-
-    //ダメージを与える(敵からの攻撃)
-    public void Damage(float damage)
-    {
-        if ((property & Property.isInvulnerable) == Property.isInvulnerable) return;
-
-        //HPからダメージ分減らす
-        hp -= damage;
-
-        //撃墜判定
-        Down_Chack();
+        
     }
 
     //戦闘機を飛ばす
     public void Launch_AriFighter()
     {
-        
+
         int RouteCount = Route_List.Count; //データ数
         //ルートのデータのチェック
         if (RouteCount <= 0) return;
 
-        if ((property & Property.isFring) != Property.isFring) //飛ぶ命令を受けているかどうか
+        if (!isFring) //飛ぶ命令を受けているかどうか
         {
-            //Debug.Log("ルート");
-            property |= Property.isFring;
+            isFring=true;
             First_Set_TargetList();
-            //Debug.Log("target_vector3s: " + target_vector3s[0]);
             StartCoroutine(Fly_AriFighter2(target_vector3s)); //コルーチン
 
             return;
@@ -136,13 +59,9 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
         list.Insert(0, transform.position);
         int count = list.Count;
 
-        for (int i=0; i<count-1; i++)
+        for (int i = 0; i < count - 1; i++)
         {
             control_point = GetControl_Point(list[0], list[1], transform.forward); //制御点を決定
-            //Debug.DrawLine(list[0], list[1], Color.blue, 5.0f);
-            //Debug.Log("list[1]: " + list[1]);
-            //EditorApplication.isPaused = true;
-
             float t = 0;
 
             while (true)
@@ -166,10 +85,8 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
     {
         float con = 0.5f;
         float twoPoint_distance = Vector3.Distance(poss1, poss2);
-        //Debug.DrawLine(transform.position, transform.position + con * twoPoint_distance * rotate, Color.red, 5.0f);
-        //Debug.Log("forward:" + (rotate + transform.position));
         return transform.position + con * twoPoint_distance * rotate;
-        
+
     }
 
     //飛び始める時にリストを用意する
@@ -184,26 +101,22 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
     {
         var outList = new List<Vector3>();
 
-        foreach(Vector3 v in rl)
+        foreach (Vector3 v in rl)
         {
             outList.Add(v + poss);
-            //Debug.Log("Clist"+(v + poss));
         }
         return outList;
     }
 
     //ベジェ曲線を用いた飛行座標取得
-    protected Vector3 GetMovePoint(Vector3 p0, Vector3 p1, Vector3 p2,float t)
+    protected Vector3 GetMovePoint(Vector3 p0, Vector3 p1, Vector3 p2, float t)
     {
         var a = Vector3.Lerp(p0, p1, t);
         var b = Vector3.Lerp(p1, p2, t);
 
         return Vector3.Lerp(a, b, t);
-        
+
     }
-    
-
-
 
 #if UNITY_EDITOR
 
@@ -260,22 +173,22 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
             return position;
         }
 
-        
+
         protected virtual void OnSceneGUI()
         {
             //Tools.current = Tool.None;
             SetComponent();
             var transform = component.transform;
-            
+
             if (!component.onHandle) return; //ハンドルがオフになっている
             if (EditorApplication.isPlaying) return; //実行されている
-            
-            for (int i=0; i < component.Route_List.Count; i++)
+
+            for (int i = 0; i < component.Route_List.Count; i++)
             {
                 //component.Route_List[i] = PositionHandle(component.Route_List[i] + transform.position) - transform.position;
                 component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + transform.position, transform.rotation) - transform.position;
             }
-            
+
         }
 
         public virtual void SetComponent()
@@ -322,7 +235,7 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
             if (vertexes.Count <= 0) return;
 
             if (!EditorApplication.isPlaying)
-                Gizmos.DrawLine(basePoss, vertexes[0]+basePoss);
+                Gizmos.DrawLine(basePoss, vertexes[0] + basePoss);
             //--- --- --- --- --- --- --- --- --- --- ---- --- ---- --- --- --- ---
             Gizmos.color = new Color32(145, 139, 244, 210);
             //GizmoType.Active の時は色を変える
@@ -338,7 +251,7 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
                 else
                 { Gizmos.DrawWireSphere(v3 + airFighter.Edi_start_Poss, 0.1f); }
             }
-            
+
             //線を引く
             for (int i = 0; i < vertexes.Count - 1; i++)
             {
@@ -353,8 +266,5 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
     }
 
 #endif
-
-
-
 }
 

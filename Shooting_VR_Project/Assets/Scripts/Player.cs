@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-public class Player : AirFighter
+public class Player : MonoBehaviour, IShootingDown
 {
     GameManager GM;
 
@@ -25,6 +25,13 @@ public class Player : AirFighter
 
     private SteamVR_Action_Boolean Action_Boolean = SteamVR_Actions._default.GrabPinch;
 
+    //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+    [SerializeField]
+    private float max_hp = 20;
+    [SerializeField]
+    private float hp = 20;
+    private bool dead = false;
+
     private void Awake()
     {
         //GM = GameManager.instance;
@@ -32,20 +39,21 @@ public class Player : AirFighter
     }
 
     // Start is called before the first frame update
-    protected override void Start()
+    private void Start()
     {
         GM = GameManager.instance;
 
-        //Debug.Log("[Player] " + GM.gameObject.name);
         if (GM.Player == this.gameObject)
             GM.Player = this.gameObject;
 
         max_hp = 40;
         hp = max_hp;
+
+
     }
 
     // Update is called once per frame
-    protected override void Update()
+    private void Update()
     {
         Input_Shoot();
         Chack_Debuff();
@@ -54,10 +62,6 @@ public class Player : AirFighter
     //ショットの受付
     void Input_Shoot()
     {
-
-
-        //Debug.Log("GM.Shoot_Trigger: " + GM.Shoot_Trigger);
-        //Debug.Log("shootNegativeFlag: " + shootNegativeFlag);
         if (GM.Shoot_Trigger  && !shootNegativeFlag)
         {
             switch (GM.Weapon)
@@ -69,7 +73,6 @@ public class Player : AirFighter
                 case 1:
                     GM.Push_Missile();
                     shootNegativeFlag = true;
-                    //GameManager.instance.Missile_Trigger = false;
 
                     break;
                 default:
@@ -131,4 +134,44 @@ public class Player : AirFighter
         isDebuff = true;
         debuffTime = 0;
     }
+
+    //死亡したかどうか
+    protected void Down_Chack()
+    {
+        if (this.hp <= 0 && !dead)
+        {
+            hp = 0;
+            dead = true;
+            Shooting_down();
+        }
+    }
+
+
+    //撃墜判定
+    public void Shooting_down()
+    {
+        //ゲームオーバー呼び出し
+    }
+
+
+    //ダメージを与える
+    public void Damage(float damage)
+    {
+        //HPからダメージ分減らす
+        hp -= damage;
+
+        //撃墜判定
+        Down_Chack();
+    }
+
+    public float Get_Max_Hp()
+    {
+        return max_hp;
+    }
+    public float Get_Hp()
+    {
+        return hp;
+    }
+
+
 }

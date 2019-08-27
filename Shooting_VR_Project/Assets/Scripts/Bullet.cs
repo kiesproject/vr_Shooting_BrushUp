@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour
         //当たった物が戦闘機
         if (c.gameObject.GetComponent<AirFighter>() != null)
         {
-            AirFighter fighter = c.gameObject.GetComponent<AirFighter>();
+            var fighter = c.gameObject.GetComponent<IShootingDown>();
 
             if (CompareLayer(layer, c.gameObject.layer))
             {
