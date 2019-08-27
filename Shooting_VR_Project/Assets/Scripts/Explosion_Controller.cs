@@ -23,7 +23,7 @@ public class Explosion_Controller : MonoBehaviour
         {
             if (CompareLayer(layer, obj.gameObject.layer))
             {
-                obj.GetComponent<AirFighter>().Damage(damage);
+                obj.GetComponent<IShootingDown>().Damage(damage);
             }
         }
 

@@ -62,8 +62,6 @@ public class PlayerControl : MonoBehaviour
 
 
         PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-40 * vertical, 40 * horizontal, -40 * horizontal));
-        //PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(20 * vertical, 0, 0));
-        //PlayerModel.transform.localRotation = (VR_Action_Pose.GetLocalRotation(SteamVR_Input_Sources.RightHand));
     }
 
     //本体を回す
@@ -115,8 +113,6 @@ public class PlayerControl : MonoBehaviour
         {
             dx = 0;
         }
-
-        //Debug.Log("y: " + transform.localPosition.y);
 
         if ((limit - a <= transform.localPosition.y) && (vertical > 0))
         {

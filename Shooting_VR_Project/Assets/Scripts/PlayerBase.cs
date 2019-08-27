@@ -34,6 +34,10 @@ public class PlayerBase : MonoBehaviour
         Rigidbody.isKinematic = true;
         Rigidbody.useGravity = false;
 
+
+        var player = GM.Player.GetComponent<Player>();
+        player.Write_PlayerSpeed(ac.airFighter_speed);
+
     }
 
     // Update is called once per frame

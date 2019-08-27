@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditorInternal;
 #endif
 
 public class AirFighter_Controller : MonoBehaviour
 {
+
+    GameManager GM;
+
+    //遭遇するまでの時間
+    [SerializeField]
+    private float encounterTime = 0;
+
+    //中心とする
+    [SerializeField]
+    private GameObject centerPoint;
 
     //飛行ルート
     [HideInInspector]
@@ -22,16 +33,34 @@ public class AirFighter_Controller : MonoBehaviour
     //飛行しているか
     private bool isFring = false;
 
+    private Player PL;
+
+    //--- エディター用のフィールド --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
+    [HideInInspector] public bool onGizmo = false;
+    [HideInInspector] public bool onHandle = false;
+    [HideInInspector] public Vector3 Edi_start_Poss;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GM = GameManager.instance;
+        PL = GM.GetComponent<Player>();
+        Edi_start_Poss = transform.position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        var player_time = PL.Get_LocalTime();
+        if (player_time >= encounterTime && !isFring)
+        {
+            Launch_AriFighter();
+        }
+
+
+
     }
 
     //戦闘機を飛ばす
@@ -81,6 +110,13 @@ public class AirFighter_Controller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// コントロールするための座標を割り出す
+    /// </summary>
+    /// <param name="poss1">あ？</param>
+    /// <param name="poss2"></param>
+    /// <param name="rotate"></param>
+    /// <returns></returns>
     private Vector3 GetControl_Point(Vector3 poss1, Vector3 poss2, Vector3 rotate)
     {
         float con = 0.5f;
@@ -118,15 +154,25 @@ public class AirFighter_Controller : MonoBehaviour
 
     }
 
+    //中心のゲームオブジェクトを設定する
+    public void Set_CenterObject(GameObject centor)
+    {
+        //飛行中は変更できない
+        if (isFring) return;
+        centerPoint = centor;
+    }
+
+
+
 #if UNITY_EDITOR
 
-    [CustomEditor(typeof(AirFighter))]
+    [CustomEditor(typeof(AirFighter_Controller))]
     //[CustomEditor(typeof(PlayerBase))]
     public class AirFighter_Inspector : Editor
     {
         ReorderableList reorderableList;
         Vector3 snap;
-        protected AirFighter component;
+        protected AirFighter_Controller component;
 
         void OnEnable()
         {
@@ -193,7 +239,7 @@ public class AirFighter_Controller : MonoBehaviour
 
         public virtual void SetComponent()
         {
-            component = target as AirFighter;
+            component = target as AirFighter_Controller;
         }
 
         bool foldout = true;
@@ -222,7 +268,7 @@ public class AirFighter_Controller : MonoBehaviour
     {
 
         [DrawGizmo(GizmoType.Active | GizmoType.NonSelected)]
-        static void DrawExampleGizmos(AirFighter airFighter, GizmoType gizmoType)
+        static void DrawExampleGizmos(AirFighter_Controller airFighter, GizmoType gizmoType)
         {
             if (airFighter.Route_List == null) return; //ルートが設定されていない
             if (!airFighter.onGizmo) return; //ギズモがオフになっている

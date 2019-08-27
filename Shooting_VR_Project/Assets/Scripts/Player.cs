@@ -32,6 +32,9 @@ public class Player : MonoBehaviour, IShootingDown
     private float hp = 20;
     private bool dead = false;
 
+    private float localTime = 0;
+    private float player_speed;
+
     private void Awake()
     {
         //GM = GameManager.instance;
@@ -57,6 +60,26 @@ public class Player : MonoBehaviour, IShootingDown
     {
         Input_Shoot();
         Chack_Debuff();
+        Count_LocalTime();
+    }
+
+    //時間をカウントする
+    void Count_LocalTime()
+    {
+        localTime += Time.deltaTime;
+    }
+
+    /// <summary>
+    /// 時間を返す
+    /// </summary>
+    public float Get_LocalTime()
+    {
+        return localTime;
+    }
+
+    public void Write_PlayerSpeed(float speed)
+    {
+        player_speed = speed;
     }
 
     //ショットの受付
