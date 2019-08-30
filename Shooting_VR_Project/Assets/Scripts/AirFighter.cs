@@ -8,7 +8,9 @@ using UnityEditor;
 using UnityEditorInternal;
 #endif
 
-
+/// <summary>
+/// (廃止しました)
+/// </summary>
 public abstract class AirFighter : MonoBehaviour, IShootingDown
 {
     //プロパティ用のフラグ

@@ -34,6 +34,12 @@ public class AirFighter_Controller : MonoBehaviour
     private bool isFring = false;
 
     private Player PL;
+    //プレイヤーかどうか
+    private bool isPlayer = true;
+
+    //出現するまでに消すモデル
+    [SerializeField]
+    private GameObject destroyModel;
 
     //--- エディター用のフィールド --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
     [HideInInspector] public bool onGizmo = false;
@@ -45,23 +51,45 @@ public class AirFighter_Controller : MonoBehaviour
     void Start()
     {
         GM = GameManager.instance;
-        PL = GM.GetComponent<Player>();
+        PL = GM.Player.GetComponent<Player>();
         Edi_start_Poss = transform.position;
+
+        if (GetComponent<PlayerBase>() == null)
+        {
+            isPlayer = false;
+        }
+
+        //---プレイヤー以外---
+        if (!isPlayer)
+        {
+            destroyModel.gameObject.SetActive(false);
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        var player_time = PL.Get_LocalTime();
-        if (player_time >= encounterTime && !isFring)
+        if (isPlayer)
         {
-            Launch_AriFighter();
+            //今の所何もしない
+        }
+        else
+        {
+            var player_time = PL.Get_LocalTime();
+            Debug.Log("[AirFighter_Controller] player_time: " + player_time);
+            if ((player_time >= encounterTime) && !isFring)
+            {
+                if (destroyModel != null)
+                    destroyModel.gameObject.SetActive(true);
+                Launch_AriFighter();
+            }
         }
 
 
-
     }
+
+
 
     //戦闘機を飛ばす
     public void Launch_AriFighter()
@@ -73,6 +101,7 @@ public class AirFighter_Controller : MonoBehaviour
 
         if (!isFring) //飛ぶ命令を受けているかどうか
         {
+            this.gameObject.SetActive(true);
             isFring=true;
             First_Set_TargetList();
             StartCoroutine(Fly_AriFighter2(target_vector3s)); //コルーチン

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5476562724391719398}
   - component: {fileID: 3940917469009600502}
   - component: {fileID: 2381084810121379998}
+  - component: {fileID: 4375552995896742496}
   m_Layer: 10
   m_Name: Tough_Enemy
   m_TagString: Untagged
@@ -144,18 +145,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31c3fa8fbd40544194dabcdf93080ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  property: 0
-  Route_List: []
-  airFighter_speed: 1
-  hp: 10
-  max_hp: 10
-  onGizmo: 0
-  onHandle: 0
-  Edi_start_Poss: {x: 0, y: 0, z: 0}
   muzzle: {fileID: 7956063110981463478}
   explosion: {fileID: 2599581018738554799, guid: 7e5c090679f30154495e74d2b714cdae,
     type: 3}
   bullet: {fileID: 6729834671323194582, guid: 615bc0fbeef6b8843b89d75ccffbda9f, type: 3}
+  max_hp: 10
+  hp: 10
+--- !u!114 &4375552995896742496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570346813452357221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3708ee09093b5754c800b59429ffefd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterTime: 0
+  centerPoint: {fileID: 0}
+  Route_List: []
+  airFighter_speed: 1
+  destroyModel: {fileID: 3304423208428648452}
+  onGizmo: 0
+  onHandle: 0
+  Edi_start_Poss: {x: 0, y: 0, z: 0}
 --- !u!1001 &4724564601540642699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,6 +182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: zakoteki_tough
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803239655927005071, guid: c4b8fccfc3f668840832a8831a0be1ec,
+        type: 3}
+      propertyPath: m_TagString
+      value: model
       objectReference: {fileID: 0}
     - target: {fileID: 6911877078739237554, guid: c4b8fccfc3f668840832a8831a0be1ec,
         type: 3}
@@ -240,6 +260,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b8fccfc3f668840832a8831a0be1ec, type: 3}
+--- !u!1 &3304423208428648452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7803239655927005071, guid: c4b8fccfc3f668840832a8831a0be1ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 4724564601540642699}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2196329366976052537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6911877078739237554, guid: c4b8fccfc3f668840832a8831a0be1ec,
