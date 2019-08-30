@@ -25,6 +25,10 @@ public class Player : AirFighter
 
     private SteamVR_Action_Boolean Action_Boolean = SteamVR_Actions._default.GrabPinch;
 
+    bool rayHit = false;
+
+    private RaycastHit hit;
+
     private void Awake()
     {
         //GM = GameManager.instance;
@@ -47,9 +51,26 @@ public class Player : AirFighter
     // Update is called once per frame
     protected override void Update()
     {
+
+        //Rayの処理
+        Ray ray = new Ray(transform.position, transform.forward);
+        
+
+        if(Physics.Raycast(ray,out hit,Mathf.Infinity))
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            rayHit = true;
+        }
+        else
+        {
+            rayHit = false;
+        }
+
         Input_Shoot();
         Chack_Debuff();
     }
+
+    
 
     //ショットの受付
     void Input_Shoot()
@@ -101,7 +122,20 @@ public class Player : AirFighter
 
         GameObject bullet1 = Instantiate(bullet_N, muzzle1.transform.position, muzzle1.transform.rotation) as GameObject;
         GameObject bullet2 = Instantiate(bullet_N, muzzle2.transform.position, muzzle1.transform.rotation) as GameObject;
+        Debug.Log("name:" + bullet1.gameObject.name + "  position:"+ bullet1.gameObject.transform.position);
 
+
+        //敵にRayが当たっているときの処理
+        if (rayHit == true)
+        {
+            var bt1 = bullet1.GetComponent<Chase_Bullet>();
+            bt1.enemy_Poss = hit.collider.gameObject;
+            bt1.player_Poss = bullet1.gameObject;
+
+            var bt2 = bullet2.GetComponent<Chase_Bullet>();
+            bt2.enemy_Poss = hit.collider.gameObject;
+            bt2.player_Poss = bullet2.gameObject;
+        }
     }
 
     private void Chack_Debuff() //デバフの処理を行う
