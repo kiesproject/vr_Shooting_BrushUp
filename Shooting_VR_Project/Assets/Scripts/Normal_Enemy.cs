@@ -47,7 +47,7 @@ public class Normal_Enemy : MonoBehaviour ,IShootingDown
 
         GameManager.instance.Enemy_Count();
         player = GameManager.instance.Player;
-        ac.Launch_AriFighter();
+        //ac.Launch_AriFighter();
     }
 
     // Update is called once per frame

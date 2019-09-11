@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public bool VR_Swicth = false;
 
+    public float timeScale = 1;
+
     #region 変数群
 
     //Playerのキー入力
@@ -127,9 +129,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        //Debug.Log("Trigger_missile: " + Missile_Trigger);
+        Time.timeScale = timeScale;
         
         {
             //自動で戻す奴

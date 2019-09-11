@@ -26,7 +26,7 @@ public class PlayerBase : MonoBehaviour
             ac = gameObject.AddComponent<AirFighter_Controller>();
         }
 
-        ac.Launch_AriFighter();
+        //ac.Launch_AriFighter();
 
         Rigidbody = GetComponent<Rigidbody>();
         if (Rigidbody == null)
