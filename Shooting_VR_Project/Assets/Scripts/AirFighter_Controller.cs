@@ -31,7 +31,7 @@ public class AirFighter_Controller : MonoBehaviour
     private List<Vector3> target_vector3s;
 
     //飛行しているか
-    private bool isFring = false;
+    public bool isFring = false;
 
     private Player PL;
     //プレイヤーかどうか(???)
@@ -44,8 +44,9 @@ public class AirFighter_Controller : MonoBehaviour
     //--- エディター用のフィールド --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
     [HideInInspector] public bool onGizmo = false;
     [HideInInspector] public bool onHandle = false;
+    [HideInInspector] public bool allMove = false;
     [HideInInspector] public Vector3 Edi_start_Poss;
-    [HideInInspector] public Vector3 all_move_poss = Vector3.zero;
+    [HideInInspector] public Vector3 all_move_poss;
 
 
     // Start is called before the first frame update
@@ -275,6 +276,8 @@ public class AirFighter_Controller : MonoBehaviour
             var snapZ = EditorPrefs.GetFloat("MoveSnapZ", 1f);
             snap = new Vector3(snapX, snapY, snapZ);
 
+            //component.all_move_poss = component.transform.position;
+
         }
 
         //自作したハンドル
@@ -299,6 +302,7 @@ public class AirFighter_Controller : MonoBehaviour
             return position;
         }
 
+        
 
         protected virtual void OnSceneGUI()
         {
@@ -316,17 +320,30 @@ public class AirFighter_Controller : MonoBehaviour
                 pp = par.position;
             }
 
-            if (!component.onHandle) return; //ハンドルがオフになっている
-            if (EditorApplication.isPlaying) return; //実行されている
 
-            for (int i = 0; i < component.Route_List.Count; i++)
+            if (EditorApplication.isPlaying) return; //実行されている
+            if (component.onHandle) //ハンドルがオフになっている
             {
-                //component.Route_List[i] = PositionHandle(component.Route_List[i] + transform.position) - transform.position;
-                component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + pp, transform.rotation) - pp;
+                for (int i = 0; i < component.Route_List.Count; i++)
+                {
+                    //component.Route_List[i] = PositionHandle(component.Route_List[i] + transform.position) - transform.position;
+                    component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + pp, transform.rotation) - pp;
+                }
             }
 
-            component.all_move_poss = Handles.PositionHandle(component.all_move_poss + new Vector3(1,1,1), transform.rotation) - component.all_move_poss - new Vector3(1,1,1);
+            if (component.allMove)
+            {
+                if (transform.position != component.all_move_poss)
+                {
+                    for(int i=0; i<component.Route_List.Count; i++)
+                    {
+                        component.Route_List[i] += (transform.position - component.all_move_poss); 
+                    }
+                }
+                component.all_move_poss = transform.position;
+                //component.transform.position = Handles.PositionHandle(component.transform.position, transform.rotation);
 
+            }
 
         }
 
@@ -344,6 +361,7 @@ public class AirFighter_Controller : MonoBehaviour
             serializedObject.Update();
             component.onGizmo = EditorGUILayout.Toggle("ギズモを表示する", component.onGizmo);
             component.onHandle = EditorGUILayout.Toggle("ハンドルを表示する", component.onHandle);
+            component.allMove = EditorGUILayout.Toggle("全ハンドルを操作", component.allMove);
 
             reorderableList.DoLayoutList();
 

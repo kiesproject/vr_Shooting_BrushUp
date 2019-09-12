@@ -46501,12 +46501,12 @@ PrefabInstance:
     - target: {fileID: 8982631859389470792, guid: 35a8d91630626f346b932598d4b5c76e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.091
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8982631859389470792, guid: 35a8d91630626f346b932598d4b5c76e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8982631859389470792, guid: 35a8d91630626f346b932598d4b5c76e,
         type: 3}
@@ -46558,6 +46558,51 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2054385793}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: Route_List.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: airFighter_speed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: Route_List.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: Route_List.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: onGizmo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: onHandle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: Route_List.Array.data[0].z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: Route_List.Array.data[1].z
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568515190008770267, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: Route_List.Array.data[2].z
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}
 --- !u!1001 &1844961899
@@ -55342,7 +55387,7 @@ PrefabInstance:
     - target: {fileID: 7185774301916218437, guid: c80338bbe4272044aa25932859886612,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4187524725517571650, guid: c80338bbe4272044aa25932859886612,
         type: 3}
@@ -55402,12 +55447,12 @@ PrefabInstance:
     - target: {fileID: 919386566695273991, guid: c80338bbe4272044aa25932859886612,
         type: 3}
       propertyPath: _sceneSequence.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919386566695273991, guid: c80338bbe4272044aa25932859886612,
         type: 3}
       propertyPath: _sceneSequence.Array.data[0]
-      value: wave0
+      value: waveb_0
       objectReference: {fileID: 0}
     - target: {fileID: 919386566695273991, guid: c80338bbe4272044aa25932859886612,
         type: 3}

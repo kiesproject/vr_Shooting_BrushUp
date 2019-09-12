@@ -53,6 +53,7 @@ public class Tough_Enemy : MonoBehaviour, IShootingDown
     // Update is called once per frame
     private void Update()
     {
+        if (!ac.isFring) return;
         if (Distance_Player() < 9)
         {
             if (shootTime == 0)

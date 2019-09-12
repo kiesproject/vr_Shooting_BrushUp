@@ -53,22 +53,20 @@ public class Normal_Enemy : MonoBehaviour ,IShootingDown
     // Update is called once per frame
     private void Update()
     {
-        if(Distance_Player() < 10)
+        if (!ac.isFring) return;
+        if(Distance_Player() < 20)
         {
             if (shootTime == 0)
             {
-                target_1_v3 = player.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+                target_1_v3 = player.transform.position;// + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
                 target_2_v3 = muzzle.transform.forward * Distance_Player();
             }
 
             
-            if (shootTime > 1)
+            if (shootTime > 1.8)
             {
                 shootTime = 0;
-                muzzle.transform.LookAt(player.transform.position + new Vector3(
-                    Random.Range(-0.6f, 0.6f), 
-                    Random.Range(-0.6f, 0.6f), 
-                    Random.Range(-0.6f, 0.6f)));
+                muzzle.transform.LookAt(player.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)));
 
                 Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
                 return;

@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour
     protected virtual void OnCollisionEnter(Collision c)
     {
         //当たった物が戦闘機
-        if (c.gameObject.GetComponent<AirFighter>() != null)
+        if (c.gameObject.GetComponent<IShootingDown>() != null)
         {
             var fighter = c.gameObject.GetComponent<IShootingDown>();
 
