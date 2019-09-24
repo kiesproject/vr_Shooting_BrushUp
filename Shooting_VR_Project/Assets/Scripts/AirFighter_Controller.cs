@@ -20,7 +20,7 @@ public class AirFighter_Controller : MonoBehaviour
     private GameObject centerPoint;
 
     //飛行ルート
-    //[HideInInspector]
+    [HideInInspector]
     public List<Vector3> Route_List;
 
     //飛行スピード
@@ -110,7 +110,7 @@ public class AirFighter_Controller : MonoBehaviour
 
             if (startRun)
             {
-                StartCoroutine(Fly_AriFighter2(target_vector3s)); //コルーチン
+                StartCoroutine(Fly_AriFighter3(target_vector3s)); //コルーチン
             }
             else
             {
@@ -136,6 +136,8 @@ public class AirFighter_Controller : MonoBehaviour
         {
             control_point = GetControl_Point(list[0], list[1], transform.forward); //制御点を決定
             float t = 0;
+            Debug.DrawLine(list[0], list[1], Color.red);
+            Debug.Log("[AC] list0: " + list[0] + " list1: " + list[1]);
 
             while (true)
             {
@@ -209,8 +211,14 @@ public class AirFighter_Controller : MonoBehaviour
     //飛び始める時にリストを用意する
     protected void First_Set_TargetList()
     {
-        //target_vector3s = new List<Vector3>(Conversion_RouteList(Route_List, transform.position)); //生成
-        target_vector3s = new List<Vector3>(Route_List); //生成
+        if (startRun)
+        {
+            target_vector3s = new List<Vector3>(Conversion_RouteList(Route_List, transform.position)); //生成
+        }
+        else
+        {
+            target_vector3s = new List<Vector3>(Route_List); //生成
+        }
     }
 
     //ルートリストのローカル座標をワールド座標に置き換える(動き始める前に実行すること)
