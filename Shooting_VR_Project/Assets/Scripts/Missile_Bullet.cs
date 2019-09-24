@@ -120,7 +120,7 @@ public class Missile_Bullet : Bullet
     //衝突判定は呼び出さないといけない？
     void Damage()
     {
-        var air = target.GetComponent<AirFighter>();
+        var air = target.GetComponent<IShootingDown>();
         //Debug.Log("ダメージ(missile)");
         //ダメージを与える
         air.Damage(damege);

@@ -6,32 +6,42 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class PlayerBase : AirFighter
+public class PlayerBase : MonoBehaviour
 {
-    
-
     private GameManager GM;
     private float moveForceMultiplier = 20.0f;
-    public Rigidbody rigidbody { private set; get; }
+    public Rigidbody Rigidbody { private set; get; }
+
+    AirFighter_Controller ac;
 
     // Start is called before the first frame update
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         GM = GameManager.instance;
-        property |= Property.isInvulnerable; //不死身にする
-        Launch_AriFighter();
 
-        rigidbody = GetComponent<Rigidbody>();
-        if (rigidbody == null)
-            rigidbody = gameObject.AddComponent<Rigidbody>();
-        rigidbody.isKinematic = true;
-        rigidbody.useGravity = false;
+        //Airghter_Controllerを保証する
+        ac = GetComponent<AirFighter_Controller>();
+        if (ac == null)
+        {
+            ac = gameObject.AddComponent<AirFighter_Controller>();
+        }
+
+        //ac.Launch_AriFighter();
+
+        Rigidbody = GetComponent<Rigidbody>();
+        if (Rigidbody == null)
+            Rigidbody = gameObject.AddComponent<Rigidbody>();
+        Rigidbody.isKinematic = true;
+        Rigidbody.useGravity = false;
+
+
+        var player = GM.Player.GetComponent<Player>();
+        player.Write_PlayerSpeed(ac.airFighter_speed);
 
     }
 
     // Update is called once per frame
-    protected override void Update()
+    private void Update()
     {
         
     }
@@ -46,7 +56,7 @@ public class PlayerBase : AirFighter
     //デバッグのみ使用可能
     public void SetSpeed_forDebug(float a)
     {
-        airFighter_speed = a;
+        ac.airFighter_speed = a;
     }
 
     //操作移動するメソッド
@@ -56,9 +66,6 @@ public class PlayerBase : AirFighter
     }
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(PlayerBase))]
-    public class PlayerBase_Inspector : AirFighter_Inspector { }
-
 
 #endif
 

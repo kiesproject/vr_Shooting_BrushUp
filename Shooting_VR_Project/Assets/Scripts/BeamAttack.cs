@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamAttack : Player
+public class BeamAttack : MonoBehaviour
 {
     public ParticleSystem beam;
     float BeamTime;
@@ -19,19 +19,14 @@ public class BeamAttack : Player
 
     private void OnParticleCollision(GameObject obj)
     {
-        //Debug.Log("ビームが当たった1");
-        if (obj.gameObject.GetComponent<AirFighter>() != null)
+        var fighter = obj.gameObject.GetComponent<IShootingDown>();
+        if (fighter != null)
         {
-            //Debug.Log("ビームが当たった2");
-            AirFighter fighter = obj.gameObject.GetComponent<AirFighter>();
-
             if (CompareLayer(layer, obj.gameObject.layer))
             {
-                //Debug.Log("ビームが当たった3");
                 //ダメージを与える
                 fighter.Damage(damege);
             }
-
             Explosion();
         }
     }

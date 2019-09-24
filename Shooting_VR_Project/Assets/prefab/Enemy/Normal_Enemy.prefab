@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 223482914793757283}
   - component: {fileID: 8448001579281319661}
+  - component: {fileID: 2037840777683382081}
   - component: {fileID: 6930778579212348990}
   - component: {fileID: 5831664185825562237}
   - component: {fileID: 5687998715320410182}
@@ -48,18 +49,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e8e495579e57f4b80be0cee235a7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  property: 0
-  Route_List: []
-  airFighter_speed: 1
-  hp: 10
-  max_hp: 10
-  onGizmo: 0
-  onHandle: 0
-  Edi_start_Poss: {x: 0, y: 0, z: 0}
   muzzle: {fileID: 9053971244075707505}
   explosion: {fileID: 8786907121785351740, guid: 546dbf982c995d54ab9c65113121daf6,
     type: 3}
   bullet: {fileID: 6729834671323194582, guid: 615bc0fbeef6b8843b89d75ccffbda9f, type: 3}
+  max_hp: 10
+  hp: 10
+--- !u!114 &2037840777683382081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223482914793757282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3708ee09093b5754c800b59429ffefd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterTime: 0
+  centerPoint: {fileID: 0}
+  Route_List: []
+  airFighter_speed: 1
+  destroyModel: {fileID: 224518702178162698}
+  onGizmo: 0
+  onHandle: 0
+  Edi_start_Poss: {x: 0, y: 0, z: 0}
 --- !u!65 &6930778579212348990
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -174,6 +189,10 @@ PrefabInstance:
     - target: {fileID: 1229354134890918, guid: 58052fa5e56276040abd07b2ecba40de, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229354134890918, guid: 58052fa5e56276040abd07b2ecba40de, type: 3}
+      propertyPath: m_TagString
+      value: model
       objectReference: {fileID: 0}
     - target: {fileID: 4727904551604176, guid: 58052fa5e56276040abd07b2ecba40de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -294,6 +313,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58052fa5e56276040abd07b2ecba40de, type: 3}
+--- !u!1 &224518702178162698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1229354134890918, guid: 58052fa5e56276040abd07b2ecba40de,
+    type: 3}
+  m_PrefabInstance: {fileID: 223482913629516204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &218763814266814076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4727904551604176, guid: 58052fa5e56276040abd07b2ecba40de,

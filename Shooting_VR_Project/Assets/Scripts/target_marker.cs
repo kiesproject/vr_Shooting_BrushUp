@@ -27,7 +27,7 @@ public class target_marker : MonoBehaviour
         {
             if (t == null) break;
 
-            if (t.GetComponent<AirFighter>() == null)
+            if (t.GetComponent<IShootingDown>() == null)
             {
                 t = t.transform.parent;
             }

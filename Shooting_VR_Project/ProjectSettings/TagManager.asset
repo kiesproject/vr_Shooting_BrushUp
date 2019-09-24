@@ -6,6 +6,9 @@ TagManager:
   tags:
   - bullet
   - PlayerBase
+  - redry_img
+  - NChr_img
+  - model
   layers:
   - Default
   - TransparentFX

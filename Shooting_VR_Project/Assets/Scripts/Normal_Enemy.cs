@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class Normal_Enemy : AirFighter
+public class Normal_Enemy : MonoBehaviour ,IShootingDown
 {
     float shootTime = 0;
 
@@ -23,27 +23,38 @@ public class Normal_Enemy : AirFighter
     private Vector3 target_1_v3;
     private Vector3 target_2_v3;
 
+    //---- ---- ----- ----- ----- ----- ----- ----- ---- ----- ----- -----
+    [SerializeField]
+    private float max_hp = 20;
+    [SerializeField]
+    private float hp = 20;
+    private bool dead = false;
+
+    AirFighter_Controller ac;
+
 
     // Start is called before the first frame update
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
+        ac = GetComponent<AirFighter_Controller>();
+        if (ac == null)
+        {
+            ac = gameObject.AddComponent<AirFighter_Controller>();
+        }
+
         max_hp = 6;
         hp = max_hp;
 
         GameManager.instance.Enemy_Count();
         player = GameManager.instance.Player;
-        Launch_AriFighter();
+        //ac.Launch_AriFighter();
     }
 
     // Update is called once per frame
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
-
-        
-
-        if(Distance_Player() < 10)
+        if (!ac.isFring) return;
+        if(Distance_Player() < 20)
         {
             if (shootTime == 0)
             {
@@ -52,35 +63,53 @@ public class Normal_Enemy : AirFighter
             }
 
             
-            if (shootTime > 1)
+            if (shootTime > 1.8)
             {
                 shootTime = 0;
-                muzzle.transform.LookAt(player.transform.position + new Vector3(
-                    Random.Range(-0.6f, 0.6f), 
-                    Random.Range(-0.6f, 0.6f), 
-                    Random.Range(-0.6f, 0.6f)));
+                muzzle.transform.LookAt(player.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)));
 
                 Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
                 return;
             }
-
-            //muzzle.transform.LookAt(Vector3.Lerp(target_2_v3, target_1_v3, shootTime));
             shootTime += Time.deltaTime;
         }
-        
-        /*
-        var v = player.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
-        muzzle.transform.LookAt(v);
-        */
     }
 
-    protected override void Shooting_down()
+    public void Shooting_down()
     {
-        base.Shooting_down();
-        //GameManager.instance.Enemy_Down_Count();
         Instantiate(explosion, transform.position, Quaternion.identity);
+        GameManager.instance.Enemy_Down_Count();
         Destroy(this.gameObject);
 
+    }
+
+    //ダメージを与える
+    public void Damage(float damage)
+    {
+        //HPからダメージ分減らす
+        hp -= damage;
+        //撃墜判定
+        Down_Chack();
+    }
+
+    //死亡したかどうか
+    protected void Down_Chack()
+    {
+        if (this.hp <= 0 && !dead)
+        {
+            hp = 0;
+            dead = true;
+            Shooting_down();
+        }
+    }
+
+    public float Get_Max_Hp()
+    {
+        return max_hp;
+    }
+    public float Get_Hp()
+    {
+        return hp;
     }
 
     void Shoot()
@@ -105,16 +134,7 @@ public class Normal_Enemy : AirFighter
 
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(Normal_Enemy))]
-    public class Normal_Enemy_Inspector : AirFighter_Inspector {
-        public override void SetComponent()
-        {
-            base.SetComponent();
-            component = target as Normal_Enemy;
-        }
-    }
 
-    public class EditorGizmo_Normal_Enemy : EditorGizmo_AirFighter { }
 
 #endif
 }

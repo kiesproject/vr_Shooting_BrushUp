@@ -8,8 +8,10 @@ using UnityEditor;
 using UnityEditorInternal;
 #endif
 
-
-public abstract class AirFighter : MonoBehaviour
+/// <summary>
+/// (廃止しました)
+/// </summary>
+public abstract class AirFighter : MonoBehaviour, IShootingDown
 {
     //プロパティ用のフラグ
     [Flags]
@@ -92,7 +94,7 @@ public abstract class AirFighter : MonoBehaviour
     }
 
     //死亡
-     protected virtual void Shooting_down()
+    public virtual void Shooting_down()
     {
         //HPがゼロになった時の処理
     }
@@ -201,6 +203,9 @@ public abstract class AirFighter : MonoBehaviour
         return Vector3.Lerp(a, b, t);
         
     }
+    
+
+
 
 #if UNITY_EDITOR
 

@@ -68,12 +68,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447554eaa651078489df1121fb6c618e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 25
   layer:
     serializedVersion: 2
     m_Bits: 512
   timer: 3
-  damege: 2
+  damege: 1
   explosion: {fileID: 7600581544840939158, guid: 2b831254f3520dd468e36615104ae304,
     type: 3}
   ally: 1
@@ -94,7 +94,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!96 &613822917363960362
 TrailRenderer:
