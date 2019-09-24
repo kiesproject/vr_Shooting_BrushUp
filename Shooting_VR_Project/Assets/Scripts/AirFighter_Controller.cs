@@ -20,7 +20,7 @@ public class AirFighter_Controller : MonoBehaviour
     private GameObject centerPoint;
 
     //飛行ルート
-    [HideInInspector]
+    //[HideInInspector]
     public List<Vector3> Route_List;
 
     //飛行スピード
@@ -366,7 +366,9 @@ public class AirFighter_Controller : MonoBehaviour
             reorderableList.DoLayoutList();
 
             if (GUILayout.Button("更新"))
-                serializedObject.ApplyModifiedProperties();
+            {
+                DrawDefaultInspector();
+            }
             serializedObject.ApplyModifiedProperties();
 
 

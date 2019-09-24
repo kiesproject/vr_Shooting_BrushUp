@@ -73,7 +73,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   timer: 3
-  damege: 2
+  damege: 1
   explosion: {fileID: 7600581544840939158, guid: 2b831254f3520dd468e36615104ae304,
     type: 3}
   ally: 1

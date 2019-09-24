@@ -57,11 +57,11 @@ public class PlayerControl : MonoBehaviour
 
         //移動する
         transform.localPosition += moveVector * Time.deltaTime;
-        PlayerModel.transform.localPosition = transform.localPosition  -0.04f* Vector3.forward - 0.03f * moveVector;
+        PlayerModel.transform.localPosition = transform.localPosition  -0.04f* Vector3.forward - 0.05f * moveVector;
         PlayerModel.transform.LookAt(transform.position);
 
 
-        PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-40 * vertical, 40 * horizontal, -40 * horizontal));
+        PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-50 * vertical, 50 * horizontal, -50 * horizontal));
     }
 
     //本体を回す

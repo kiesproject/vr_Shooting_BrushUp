@@ -73,10 +73,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   timer: 3
-  damege: 4
+  damege: 2
   explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
   ally: 1
   enemy: 0
+  picth: 1
+  fileName: enemy_shoot
 --- !u!54 &4877921713784569348
 Rigidbody:
   m_ObjectHideFlags: 0
