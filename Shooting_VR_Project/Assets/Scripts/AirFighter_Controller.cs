@@ -41,6 +41,9 @@ public class AirFighter_Controller : MonoBehaviour
     [SerializeField]
     private GameObject destroyModel;
 
+    [SerializeField]
+    private bool isDead = false;
+
     //--- エディター用のフィールド --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
     [HideInInspector] public bool onGizmo = false;
     [HideInInspector] public bool onHandle = false;
@@ -121,7 +124,7 @@ public class AirFighter_Controller : MonoBehaviour
     }
 
     /// <summary>
-    /// 指定したルートを飛行する(Player専用)
+    /// 指定したルートを飛行する(旧式)
     /// </summary>
     /// <param name="RoutList"></param>
     /// <returns></returns>
@@ -157,7 +160,7 @@ public class AirFighter_Controller : MonoBehaviour
     }
 
     /// <summary>
-    /// 指定したルートを飛行する(Player以外)
+    /// 指定したルートを飛行する
     /// </summary>
     /// <param name="RoutList"></param>
     /// <returns></returns>
@@ -180,6 +183,9 @@ public class AirFighter_Controller : MonoBehaviour
                 transform.localPosition = GetMovePoint(list[0], control_point, list[1] , t);
                 transform.LookAt(GetMovePoint(list[0], control_point, list[1], t + 0.0001f));
 
+
+                wif (isDead) break;
+
                 if (t > 1.0f)
                 {
                     list.RemoveAt(0); //0番目を除外する。
@@ -190,6 +196,8 @@ public class AirFighter_Controller : MonoBehaviour
 
                 yield return null;
             }
+
+            if (isDead) break;
         }
     }
 
@@ -249,6 +257,11 @@ public class AirFighter_Controller : MonoBehaviour
         //飛行中は変更できない
         if (isFring) return;
         centerPoint = centor;
+    }
+
+    public void Dead()
+    {
+        isDead = true;
     }
 
 
