@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
     //ゲームの遷移状態
     public int GameState = 0;
+    private int GameStatedump = 0;
 
     public void Enemy_Count()
     {
@@ -159,7 +160,16 @@ public class GameManager : MonoBehaviour
 
         }
 
-        //Debug.Log(Weapon_Switch);
+
+        if (GameState != GameStatedump)
+        {
+            //リセットが実行された
+            if (GameState == 0)
+            {
+                Player_Update();
+            }
+        }
+        GameStatedump = GameState;
     }
 
     //--------------------入力-----------------------

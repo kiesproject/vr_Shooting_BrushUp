@@ -63,16 +63,7 @@ public class Score_Board : MonoBehaviour
         {
             if (time < 3)
             {
-                //SceneManager.UnloadSceneAsync("wave6");
-                var o = GameObject.Find("MissileManager");
-                SceneManager.MoveGameObjectToScene(o, SceneManager.GetActiveScene());
-                var o2 = GameObject.Find("SceneManager");
-                SceneManager.MoveGameObjectToScene(o2, SceneManager.GetActiveScene());
-
-
-                Destroy(o);
-                Destroy(o2);
-                SceneManager.LoadScene("Title");
+                SeaneController.sceanController.GameReset();
                 //SceneManager.UnloadSceneAsync("wave6");
             }
         }

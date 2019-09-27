@@ -14,7 +14,7 @@ public class GRgage : MonoBehaviour
     void Start()
     {
         //Debug.Log("[GRgage] GM.Player: " + GameManager.instance.Player);
-        player = GameManager.instance.Player.GetComponent<Player>();
+        
 
         //緑HPバーの取得
        lifeGage = GameObject.Find("LifeGage").GetComponent<Image>();
@@ -22,9 +22,19 @@ public class GRgage : MonoBehaviour
         lifeGageRed = GameObject.Find("LifeGageRed").GetComponent<Image>();
     }
 
+    private void LateUpdate()
+    {
+        if (!player)
+        {
+            player = GameManager.instance.Player.GetComponent<Player>();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!player) return;
+
         //現在のHPの値を緑HPバーで表示
         lifeGage.fillAmount = player.Get_Hp() / player.Get_Max_Hp();
         //現在のHPの値を赤HPバーで表示
