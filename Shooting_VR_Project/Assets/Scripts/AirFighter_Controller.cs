@@ -184,7 +184,7 @@ public class AirFighter_Controller : MonoBehaviour
                 transform.LookAt(GetMovePoint(list[0], control_point, list[1], t + 0.0001f));
 
 
-                wif (isDead) break;
+                if (isDead) break;
 
                 if (t > 1.0f)
                 {
