@@ -10,7 +10,7 @@ public class PlayerBase : MonoBehaviour
 {
     private GameManager GM;
     private float moveForceMultiplier = 20.0f;
-    public Rigidbody Rigidbody { private set; get; }
+
 
     AirFighter_Controller ac;
 
@@ -28,15 +28,7 @@ public class PlayerBase : MonoBehaviour
 
         //ac.Launch_AriFighter();
 
-        Rigidbody = GetComponent<Rigidbody>();
-        if (Rigidbody == null)
-            Rigidbody = gameObject.AddComponent<Rigidbody>();
-        Rigidbody.isKinematic = true;
-        Rigidbody.useGravity = false;
-
-
-        var player = GM.Player.GetComponent<Player>();
-        player.Write_PlayerSpeed(ac.airFighter_speed);
+        //var player = GM.Player.GetComponent<Player>();
 
     }
 

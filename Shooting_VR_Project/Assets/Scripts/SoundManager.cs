@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
     GameObject soundObject;
 
     [SerializeField]
-    bool beepAccept = true;
+    public bool beepAccept = true;
 
     Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
     AudioSource source;

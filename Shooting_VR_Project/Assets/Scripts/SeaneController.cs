@@ -36,13 +36,7 @@ public class SeaneController : MonoBehaviour
     {
         nowSceanIndex = 0;
 
-        SceneLoad();
-
-        //先頭のシーン以外はアンロード(1からスタート)
-        for (int i = 1; i < _sceneSequence.Length; i++)
-        {
-            //SceneManager.UnloadSceneAsync(_sceneSequence[i]);
-        }
+        Scene_LoadOne();
 
         //デバッグ用
         PB = GameObject.FindGameObjectWithTag("PlayerBase");
@@ -56,8 +50,9 @@ public class SeaneController : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.N)) SwitchScean();
     }
 
-    public void SceneLoad()
+    public void Scene_LoadOne()
     {
+        if (_sceneSequence.Length == 0) return;
         try
         {
             SceneManager.LoadSceneAsync(_sceneSequence[nowSceanIndex], LoadSceneMode.Additive);
@@ -69,7 +64,7 @@ public class SeaneController : MonoBehaviour
     //シーン切り替えメソッド(外部参照可)
     public void SwitchScean()
     {
-
+        if (_sceneSequence.Length == 0) return;
 
 
         if (nowSceanIndex != _sceneSequence.Length - 1)
@@ -101,8 +96,13 @@ public class SeaneController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 次のロード
+    /// </summary>
     void Scene_Load()
     {
+        if (_sceneSequence.Length == 0) return;
+
         try
         {
             SceneManager.LoadSceneAsync(_sceneSequence[nowSceanIndex + 1], LoadSceneMode.Additive);
@@ -110,13 +110,33 @@ public class SeaneController : MonoBehaviour
         catch { Debug.Log("Scene Load Failed"); }
     }
 
+    /// <summary>
+    /// 現在のシーンをアンロード
+    /// </summary>
     void Scene_Unload()
     {
+        if (_sceneSequence.Length == 0) return;
+
         try
         {
             SceneManager.UnloadSceneAsync(_sceneSequence[nowSceanIndex]);
         }
         catch { Debug.Log("Scene UnLoad Failed"); }
+    }
+
+    //ゲームをリセットする
+    public void GameReset()
+    {
+        //var o = GameObject.Find("MissileManager");
+        //SceneManager.MoveGameObjectToScene(o, SceneManager.GetActiveScene());
+        GameManager.instance.GameState = 0;
+        GameManager.instance.Player = null;
+        var o2 = GameObject.Find("SceneManager");
+        SceneManager.MoveGameObjectToScene(o2, SceneManager.GetActiveScene());
+
+        //Destroy(o);
+        Destroy(o2);
+        SceneManager.LoadScene("Title");
     }
 
 }

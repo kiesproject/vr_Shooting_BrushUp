@@ -56,7 +56,7 @@ public class AirFighter_Controller : MonoBehaviour
     void Start()
     {
         GM = GameManager.instance;
-        PL = GM.Player.GetComponent<Player>();
+        //PL = GM.Player.GetComponent<Player>();
         //Edi_start_Poss = transform.parent.position;
 
         //---プレイヤー以外---
@@ -71,9 +71,20 @@ public class AirFighter_Controller : MonoBehaviour
 
     }
 
+    private void LateUpdate()
+    {
+        if (PL == null)
+        {
+
+            PL = GM.Player.GetComponent<Player>();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (PL == null) return;
+
         if (startRun)
         {
 
@@ -100,7 +111,7 @@ public class AirFighter_Controller : MonoBehaviour
     //戦闘機を飛ばす
     public void Launch_AriFighter()
     {
-
+        PL = GM.Player.GetComponent<Player>();
         int RouteCount = Route_List.Count; //データ数
         //ルートのデータのチェック
         if (RouteCount <= 0) return;
@@ -184,7 +195,7 @@ public class AirFighter_Controller : MonoBehaviour
                 transform.LookAt(GetMovePoint(list[0], control_point, list[1], t + 0.0001f));
 
 
-                wif (isDead) break;
+                if (isDead) break;
 
                 if (t > 1.0f)
                 {
@@ -261,6 +272,7 @@ public class AirFighter_Controller : MonoBehaviour
 
     public void Dead()
     {
+        Debug.Log("[AC] 死んだ");
         isDead = true;
     }
 
