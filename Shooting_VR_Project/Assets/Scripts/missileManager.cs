@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class missileManager : MonoBehaviour
 {
-    public Image MGage;
-    public GameObject Rimage;
-    public GameObject Nimage;
+
+    [HideInInspector] public Image MGage;
+    [HideInInspector] public GameObject Rimage;
+    [HideInInspector] public GameObject Nimage;
 
     public float maxMissile = 100;
     public float currentMissile = 100;
@@ -32,9 +33,9 @@ public class missileManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        { instance = this; }
-        DontDestroyOnLoad(gameObject);
+        //if (instance == null)
+        //{ instance = this; }
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update

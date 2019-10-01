@@ -15,6 +15,9 @@ public class Player : MonoBehaviour, IShootingDown
     [SerializeField]
     GameObject muzzle2;
 
+    [SerializeField]
+    private PlayerDaed PlayerDaed;
+
     float time = 0;
     bool shootNegativeFlag = false;
 
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour, IShootingDown
     private bool dead = false;
 
     private float localTime = 0;
-    private float player_speed;
+    //private float player_speed;
 
     private void Awake()
     {
@@ -58,9 +61,18 @@ public class Player : MonoBehaviour, IShootingDown
     // Update is called once per frame
     private void Update()
     {
-        Input_Shoot();
+        if (GM.GameState != 2)
+        {
+            Input_Shoot();
+        }
         Chack_Debuff();
         Count_LocalTime();
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            PlayerDaed.Dead();
+        }
+
     }
 
     //時間をカウントする
@@ -75,11 +87,6 @@ public class Player : MonoBehaviour, IShootingDown
     public float Get_LocalTime()
     {
         return localTime;
-    }
-
-    public void Write_PlayerSpeed(float speed)
-    {
-        player_speed = speed;
     }
 
     //ショットの受付
@@ -174,7 +181,10 @@ public class Player : MonoBehaviour, IShootingDown
     public void Shooting_down()
     {
         //ゲームオーバー呼び出し
+        PlayerDaed.Dead();
     }
+
+
 
 
     //ダメージを与える
