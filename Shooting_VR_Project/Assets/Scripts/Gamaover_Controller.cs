@@ -47,6 +47,7 @@ public class Gamaover_Controller : MonoBehaviour
         {
             Debug.Log("[GC] 表示: " + (float)i/mi);
             text.color = new Color(1, 0f, 0f,(float)(i + 1) / mi);
+            GlitchFx.intensity = 0.3f * (float)(i ) / mi;
 
             yield return new WaitForSeconds(0.1f);
         }
