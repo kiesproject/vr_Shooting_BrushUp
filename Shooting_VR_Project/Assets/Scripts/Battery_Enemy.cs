@@ -8,6 +8,8 @@ using UnityEditor;
 
 public class Battery_Enemy : MonoBehaviour, IShootingDown
 {
+    public float point;
+
     float shootTime = 0;
 
     [SerializeField]
@@ -85,7 +87,7 @@ public class Battery_Enemy : MonoBehaviour, IShootingDown
     public void Shooting_down()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
-        GameManager.instance.Enemy_Down_Count();
+        GameManager.instance.Enemy_Down_Count(point);
         Destroy(this.gameObject);
 
     }

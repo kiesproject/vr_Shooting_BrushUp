@@ -13,6 +13,8 @@ using UnityEditorInternal;
 /// </summary>
 public abstract class AirFighter : MonoBehaviour, IShootingDown
 {
+    public float point;
+
     //プロパティ用のフラグ
     [Flags]
     public enum Property
@@ -87,7 +89,7 @@ public abstract class AirFighter : MonoBehaviour, IShootingDown
             hp = 0;
             property |= Property.isDead; //死亡状態にする
             Debug.Log("[AirFighter] <" + gameObject.name + ">カウント前");
-            GameManager.instance.Enemy_Down_Count();
+            GameManager.instance.Enemy_Down_Count(point);
             Shooting_down();
             
         }

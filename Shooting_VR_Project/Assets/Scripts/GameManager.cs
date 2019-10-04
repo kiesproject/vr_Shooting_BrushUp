@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         enemyCounter++;
     }
 
-    public void Enemy_Down_Count()
+    public void Enemy_Down_Count(float point = 0)
     {
 
         downCount++;

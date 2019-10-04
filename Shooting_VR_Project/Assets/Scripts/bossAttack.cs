@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class bossAttack : MonoBehaviour, IShootingDown
 {
+    public float point;
+
     public GameObject bossmuzzle1;
     public GameObject bossmuzzle2;
     public GameObject bossmuzzle3;
@@ -61,7 +63,7 @@ public class bossAttack : MonoBehaviour, IShootingDown
 
     public void Shooting_down()
     {
-        GameManager.instance.Enemy_Down_Count();
+        GameManager.instance.Enemy_Down_Count(point);
 
     }
 

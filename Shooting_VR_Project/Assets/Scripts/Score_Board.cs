@@ -15,9 +15,6 @@ public class Score_Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
-
         textMesh.text = "撃破数 "+ GameManager.instance.downCount + "体";
     }
 
@@ -27,6 +24,8 @@ public class Score_Board : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        return;
+
         textMesh.text = "撃破数 " + GameManager.instance.downCount + "体";
 
         if (GameManager.instance.GameState != 2) return;
