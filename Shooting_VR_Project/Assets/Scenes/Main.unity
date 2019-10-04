@@ -58435,6 +58435,11 @@ PrefabInstance:
       propertyPath: _sceneSequence.Array.data[7]
       value: bossb
       objectReference: {fileID: 0}
+    - target: {fileID: 919386566695273991, guid: c80338bbe4272044aa25932859886612,
+        type: 3}
+      propertyPath: StartLoad
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80338bbe4272044aa25932859886612, type: 3}
 --- !u!4 &8773536818137995623 stripped
