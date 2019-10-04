@@ -29094,10 +29094,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1549513096655734, guid: 1b93b5ead955ae54b9121dce6162220a, type: 3}
-      propertyPath: m_Name
-      value: meteo1_o
-      objectReference: {fileID: 0}
     - target: {fileID: 4931789389590254, guid: 1b93b5ead955ae54b9121dce6162220a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -58.107048
@@ -29141,6 +29137,10 @@ PrefabInstance:
     - target: {fileID: 4931789389590254, guid: 1b93b5ead955ae54b9121dce6162220a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549513096655734, guid: 1b93b5ead955ae54b9121dce6162220a, type: 3}
+      propertyPath: m_Name
+      value: meteo1_o
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b93b5ead955ae54b9121dce6162220a, type: 3}
@@ -46752,6 +46752,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 160804522, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}
+      propertyPath: bullet_N
+      value: 
+      objectReference: {fileID: 1950414143070271522, guid: 5e25ca3cad9a5954db05dbe06c0a63a6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}
 --- !u!4 &1841603310 stripped
