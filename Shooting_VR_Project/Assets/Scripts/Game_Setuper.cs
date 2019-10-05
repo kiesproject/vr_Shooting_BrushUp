@@ -7,7 +7,7 @@ public class Game_Setuper : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.instance.Player_Update();
+      
         Debug.Log("[Game_Setuper] プレイヤーをセットアップ");
     }
 
@@ -15,6 +15,7 @@ public class Game_Setuper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.Player_Update();
         GameManager.instance.GameState = 1;
     }
 

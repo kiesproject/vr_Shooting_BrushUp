@@ -21,7 +21,7 @@ public class PlayerDaed : MonoBehaviour
     {
         ac = GetComponent<AirFighter_Controller>();
         //rig = GetComponent<Rigidbody>();
-        velocity = Vector3.forward * 9;
+        velocity = transform.forward * 4;
 
     }
 

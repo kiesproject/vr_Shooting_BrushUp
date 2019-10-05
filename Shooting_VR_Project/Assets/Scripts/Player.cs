@@ -36,6 +36,8 @@ public class Player : MonoBehaviour, IShootingDown
     private bool dead = false;
 
     private float localTime = 0;
+    private bool isInvincible;
+
     //private float player_speed;
 
     private void Awake()
@@ -56,6 +58,21 @@ public class Player : MonoBehaviour, IShootingDown
         hp = max_hp;
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (isInvincible)
+        {
+
+        }
+    }
+
+    IEnumerator Invincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(3);
+        isInvincible = false;
     }
 
     // Update is called once per frame
@@ -190,11 +207,15 @@ public class Player : MonoBehaviour, IShootingDown
     //ダメージを与える
     public void Damage(float damage)
     {
+        if (isInvincible) return;
+
         //HPからダメージ分減らす
         hp -= damage;
 
         //撃墜判定
         Down_Chack();
+
+        StartCoroutine(Invincible());
     }
 
     public float Get_Max_Hp()

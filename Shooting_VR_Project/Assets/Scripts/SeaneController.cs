@@ -21,6 +21,9 @@ public class SeaneController : MonoBehaviour
     string testText;
     GameObject PB; //
 
+    [SerializeField]
+    bool StartLoad;
+
     //切り替えるためのシーンの名前（文字列）
     [SerializeField] string[] _sceneSequence;
 
@@ -36,6 +39,7 @@ public class SeaneController : MonoBehaviour
     {
         nowSceanIndex = 0;
 
+        if (!StartLoad)
         Scene_LoadOne();
 
         //デバッグ用
