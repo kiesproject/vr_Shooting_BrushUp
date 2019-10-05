@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    [HideInInspector] public int downCount = 0; //撃墜した数
+    public int downCount = 0; //撃墜した数
     [HideInInspector] public int enemyCounter = 0; //敵の数
 
     //ゲームの遷移状態

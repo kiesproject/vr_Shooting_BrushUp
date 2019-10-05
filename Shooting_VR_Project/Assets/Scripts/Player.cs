@@ -38,6 +38,11 @@ public class Player : MonoBehaviour, IShootingDown
     private float localTime = 0;
     private bool isInvincible;
 
+
+    private RaycastHit hit;
+    private int layerMask;
+    private bool rayHit;
+
     //private float player_speed;
 
     private void Awake()
@@ -57,7 +62,7 @@ public class Player : MonoBehaviour, IShootingDown
         max_hp = 40;
         hp = max_hp;
 
-
+        layerMask = bullet_N.GetComponent<Bullet>().layer;
     }
 
     private void FixedUpdate()
@@ -78,6 +83,9 @@ public class Player : MonoBehaviour, IShootingDown
     // Update is called once per frame
     private void Update()
     {
+
+        Raying_Aim();
+
         if (GM.GameState != 2)
         {
             Input_Shoot();
@@ -90,6 +98,23 @@ public class Player : MonoBehaviour, IShootingDown
             PlayerDaed.Dead();
         }
 
+    }
+
+    private void Raying_Aim()
+    {
+        //Rayの処理
+        Ray ray = new Ray(transform.position, transform.forward);
+
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            rayHit = true;
+        }
+        else
+        {
+            rayHit = false;
+        }
     }
 
     //時間をカウントする

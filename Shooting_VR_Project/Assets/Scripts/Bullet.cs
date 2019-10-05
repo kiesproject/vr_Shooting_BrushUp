@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     //衝突するレイヤー
     //基本playerかenemyを選択する。
     [SerializeField, Tooltip("当たる物を指定する")]
-    protected LayerMask layer = 0;
+    public LayerMask layer = 0;
 
     [SerializeField, Tooltip("消滅時間")]
     protected float timer = 5;

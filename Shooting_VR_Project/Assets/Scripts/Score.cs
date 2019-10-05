@@ -13,10 +13,14 @@ public class Score : MonoBehaviour
     public List<Text> text;
     public List<int> score;
 
-    static public int clearScore;
+    public int clearScore;
 
     string filePath;
     SaveData save;
+
+    [SerializeField]
+    GameObject[] text_clear;
+    bool isPlayScore = false;
 
     // Start is called before the first frame update
     // 起動時の処理
@@ -34,9 +38,74 @@ public class Score : MonoBehaviour
 
         if (Input.GetKey(KeyCode.T) || GameManager.instance.GameState == 2)
         {
-            Sort();
+            if (!isPlayScore) StartCoroutine(StartSort());
         }
     }
+
+    IEnumerator StartSort()
+    {
+        isPlayScore = true;
+        for(int i=0; i<text_clear.Length; i++)
+        {
+            text_clear[i].SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return new WaitForSeconds(1);
+        Sort2();
+        yield return new WaitForSeconds(20);
+        SeaneController.sceanController.GameReset();
+
+    }
+
+    public void Sort2()
+    {
+        filePath = Application.dataPath + "/" + ".savedata.json";
+        save = new SaveData();
+
+        Load();
+        Debug.Log("save: " + save.score1[0]+", " + save.score1[1] + ", " + save.score1[2] + ", " + save.score1[3]);
+
+        score = new List<int>(save.score1);
+        clearScore = GameManager.instance.downCount;
+        score[0] = clearScore; //クリア時のスコアを代入する
+        int[] vs = { 1, 0, 0, 0 };
+
+        Debug.Log(" save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
+
+        for (int i = 0; i < score.Count - 1; i++)
+        {
+            for (int j = 0; j < score.Count-1-i; j++)
+            {
+                if (score[j] > score[j + 1])
+                {
+                    var dump = score[j + 1];
+                    score[j + 1] = score[j];
+                    score[j] = dump;
+
+                    var dump2 = vs[j + 1];
+                    vs[j + 1] = vs[j];
+                    vs[j] = dump2;
+                }
+            }
+        }
+
+        Debug.Log("sorted_save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
+
+
+        for (int i = 0; i < score.Count - 1; i++)
+        {
+            text[i + 1].text = score[score.Count - 1 - i].ToString();
+            if (vs[1] == 1)
+                text[i + 1].color = Color.yellow;
+        }
+
+        text[0].text = clearScore.ToString();
+        save.score1 = score;
+        Save();
+        Score_Board.SetActive(true);
+    }
+
 
     public void Sort()
     {

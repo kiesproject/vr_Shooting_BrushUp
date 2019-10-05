@@ -360,10 +360,11 @@ public class AirFighter_Controller : MonoBehaviour
                 for (int i = 0; i < component.Route_List.Count; i++)
                 {
                     //component.Route_List[i] = PositionHandle(component.Route_List[i] + transform.position) - transform.position;
-                    component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + pp, transform.rotation) - pp;
+                    component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + pp + component.all_move_poss, transform.rotation) - pp - component.all_move_poss;
                 }
             }
 
+            /*
             if (component.allMove)
             {
                 if (transform.position != component.all_move_poss)
@@ -377,6 +378,7 @@ public class AirFighter_Controller : MonoBehaviour
                 //component.transform.position = Handles.PositionHandle(component.transform.position, transform.rotation);
 
             }
+            */
 
         }
 
@@ -470,7 +472,7 @@ public class AirFighter_Controller : MonoBehaviour
                 { Gizmos.DrawLine(vertexes[i] , vertexes[i + 1] ); }
                 else
                 { Gizmos.DrawLine(vertexes[i] , vertexes[i + 1]); }*/
-                Gizmos.DrawLine(vertexes[i] + pp, vertexes[i + 1] + pp); ;
+                Gizmos.DrawLine(vertexes[i] + pp + airFighter.all_move_poss, vertexes[i + 1] + pp + airFighter.all_move_poss); ;
             }
 
         }
