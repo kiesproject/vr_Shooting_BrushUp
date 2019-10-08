@@ -22,12 +22,11 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Transform myTransform = this.transform;
-
-        Vector3 pos = myTransform.position;
-        pos.z += 0.1f;
-
-        myTransform.position = pos;
+        //Transform myTransform = this.transform;
+        //myTransform.position += new Vector3(0, 0, speed * Time.deltaTime);
+        //Vector3 pos = myTransform.position;
+        //pos.z += 0.1f;
+        //myTransform.position = pos;
 
         this.transform.Rotate(rotationAngle);
     }
