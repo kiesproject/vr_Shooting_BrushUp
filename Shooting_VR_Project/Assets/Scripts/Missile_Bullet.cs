@@ -44,7 +44,7 @@ public class Missile_Bullet : Bullet
             addspeed += 0.001f;
             missile_timer += Time.deltaTime * 0.1f + addspeed;//タイマー
 
-            transform.position += transform.forward + rndV; //直進
+            transform.position +=  1.5f * transform.forward + rndV; //直進
             return;
         }
         else //追跡
@@ -60,7 +60,7 @@ public class Missile_Bullet : Bullet
                 target = null;
                 Explosion();
             }
-            mtime += Time.deltaTime * 1.5f;
+            mtime += Time.deltaTime * 2.5f;
             if (mtime >= 1) //ターゲットまでたどり着いたらダメージを与える。
             {
                 Damage();

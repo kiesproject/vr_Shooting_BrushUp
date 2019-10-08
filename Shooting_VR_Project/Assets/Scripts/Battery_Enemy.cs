@@ -40,18 +40,18 @@ public class Battery_Enemy : MonoBehaviour, IShootingDown
             ac = gameObject.AddComponent<AirFighter_Controller>();
         }
 
-        max_hp = 10;
+        max_hp = 15;
         hp = max_hp;
         GameManager.instance.Enemy_Count();
         player = GameManager.instance.Player;
-        ac.Launch_AriFighter();
+        //ac.Launch_AriFighter();
     }
 
     // Update is called once per frame
     private void Update()
     {
         if (!ac.isFring) return;
-        if (Distance_Player() < 20)
+        if (Distance_Player() < 40)
         {
             if (shootTime == 0)
             {

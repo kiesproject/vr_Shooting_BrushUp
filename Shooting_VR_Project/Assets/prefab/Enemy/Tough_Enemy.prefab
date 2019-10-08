@@ -39,11 +39,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2681367977515023067}
+  - component: {fileID: 2381084810121379998}
+  - component: {fileID: 4375552995896742496}
   - component: {fileID: 3725763435322774421}
   - component: {fileID: 5476562724391719398}
   - component: {fileID: 3940917469009600502}
-  - component: {fileID: 2381084810121379998}
-  - component: {fileID: 4375552995896742496}
   m_Layer: 10
   m_Name: Tough_Enemy
   m_TagString: Untagged
@@ -67,6 +67,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2381084810121379998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570346813452357221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31c3fa8fbd40544194dabcdf93080ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzle: {fileID: 7956063110981463478}
+  explosion: {fileID: 2599581018738554799, guid: 7e5c090679f30154495e74d2b714cdae,
+    type: 3}
+  bullet: {fileID: 6729834671323194582, guid: 615bc0fbeef6b8843b89d75ccffbda9f, type: 3}
+  max_hp: 10
+  hp: 10
+--- !u!114 &4375552995896742496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570346813452357221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3708ee09093b5754c800b59429ffefd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterTime: 0
+  centerPoint: {fileID: 0}
+  Route_List: []
+  airFighter_speed: 1
+  isFring: 0
+  startRun: 0
+  destroyModel: {fileID: 3304423208428648452}
+  isDead: 0
+  onGizmo: 0
+  onHandle: 0
+  allMove: 0
+  Edi_start_Poss: {x: 0, y: 0, z: 0}
+  all_move_poss: {x: 0, y: 0, z: 0}
+  all_move_pass2: {x: 0, y: 0, z: 0}
 --- !u!65 &3725763435322774421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -133,44 +177,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2381084810121379998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8570346813452357221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31c3fa8fbd40544194dabcdf93080ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  muzzle: {fileID: 7956063110981463478}
-  explosion: {fileID: 2599581018738554799, guid: 7e5c090679f30154495e74d2b714cdae,
-    type: 3}
-  bullet: {fileID: 6729834671323194582, guid: 615bc0fbeef6b8843b89d75ccffbda9f, type: 3}
-  max_hp: 10
-  hp: 10
---- !u!114 &4375552995896742496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8570346813452357221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3708ee09093b5754c800b59429ffefd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  encounterTime: 0
-  centerPoint: {fileID: 0}
-  Route_List: []
-  airFighter_speed: 1
-  destroyModel: {fileID: 3304423208428648452}
-  onGizmo: 0
-  onHandle: 0
-  Edi_start_Poss: {x: 0, y: 0, z: 0}
 --- !u!1001 &4724564601540642699
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -177,11 +177,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   timer: 5
-  damege: 6
+  damege: 10
   explosion: {fileID: 7422320732940720425, guid: bbeefc31bcf33164f92098477f8038e1,
     type: 3}
   ally: 0
   enemy: 1
+  picth: 1
+  fileName: enemy_shoot
   target: {fileID: 0}
 --- !u!1001 &8961288094835007168
 PrefabInstance:

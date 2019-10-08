@@ -58,7 +58,7 @@ public class Normal_Enemy : MonoBehaviour ,IShootingDown
         {
             if (shootTime == 0)
             {
-                target_1_v3 = player.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+                target_1_v3 = player.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
                 target_2_v3 = muzzle.transform.forward * Distance_Player();
             }
 

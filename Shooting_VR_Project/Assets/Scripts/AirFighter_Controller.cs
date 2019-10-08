@@ -44,12 +44,15 @@ public class AirFighter_Controller : MonoBehaviour
     [SerializeField]
     private bool isDead = false;
 
+    private float baseTime = 0;
+
     //--- エディター用のフィールド --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
     [HideInInspector] public bool onGizmo = false;
     [HideInInspector] public bool onHandle = false;
     [HideInInspector] public bool allMove = false;
     [HideInInspector] public Vector3 Edi_start_Poss;
     [HideInInspector] public Vector3 all_move_poss;
+    [HideInInspector] public Vector3 all_move_pass2;
 
 
     // Start is called before the first frame update
@@ -58,6 +61,7 @@ public class AirFighter_Controller : MonoBehaviour
         GM = GameManager.instance;
         //PL = GM.Player.GetComponent<Player>();
         //Edi_start_Poss = transform.parent.position;
+
 
         //---プレイヤー以外---
         if (!startRun)
@@ -77,6 +81,7 @@ public class AirFighter_Controller : MonoBehaviour
         {
 
             PL = GM.Player.GetComponent<Player>();
+            baseTime = PL.Get_LocalTime();
         }
     }
 
@@ -92,14 +97,21 @@ public class AirFighter_Controller : MonoBehaviour
         }
         else
         {
+            //Debug.Log("[AC] チェック「" + gameObject.name + "」");
             var player_time = PL.Get_LocalTime();
-            Debug.Log("[AirFighter_Controller] player_time: " + (int)player_time + " s");
-            if ((player_time >= encounterTime) && !isFring)
+            //Debug.Log("[AirFighter_Controller] player_time: " + (int)player_time + " s");
+
+            //Debug.Log("「"+ gameObject.name +"」 time: " + (player_time - baseTime) + " eTime: " + encounterTime);
+            if (((player_time - baseTime) >= encounterTime) && !isFring)
             {
+                //Debug.Log("[AC] チェック「" + gameObject.name + "」");
+
                 if (destroyModel != null)
-                    Debug.Log("[AirFighter_Controller] モデルを有効");
+                {
+                    //Debug.Log("[AirFighter_Controller] モデルを有効");
                     destroyModel.gameObject.SetActive(true);
-                Launch_AriFighter();
+                    Launch_AriFighter();
+                }
             }
         }
 
@@ -192,7 +204,7 @@ public class AirFighter_Controller : MonoBehaviour
                 var pp = PL.transform.localPosition;
 
                 transform.localPosition = GetMovePoint(list[0], control_point, list[1] , t);
-                transform.LookAt(GetMovePoint(list[0], control_point, list[1], t + 0.0001f));
+                transform.LookAt(GetMovePoint( list[0], control_point, list[1], t + 0.0001f));
 
 
                 if (isDead) break;
@@ -360,25 +372,28 @@ public class AirFighter_Controller : MonoBehaviour
                 for (int i = 0; i < component.Route_List.Count; i++)
                 {
                     //component.Route_List[i] = PositionHandle(component.Route_List[i] + transform.position) - transform.position;
-                    component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + pp + component.all_move_poss, transform.rotation) - pp - component.all_move_poss;
+                    component.Route_List[i] = Handles.PositionHandle(component.Route_List[i] + pp, transform.rotation) - pp ;
                 }
             }
 
-            /*
+
+            var pv = new Vector3(1, 1, 1);
             if (component.allMove)
             {
-                if (transform.position != component.all_move_poss)
+                component.all_move_poss = Handles.PositionHandle( component.all_move_poss + component.transform.position + pv, transform.rotation) - component.transform.position - pv;
+                if (component.all_move_poss != component.all_move_pass2)
                 {
-                    for(int i=0; i<component.Route_List.Count; i++)
+                    //component.transform.position += component.all_move_poss - component.all_move_pass2;
+
+                    for (int i = 0; i < component.Route_List.Count; i++)
                     {
-                        component.Route_List[i] += (transform.position - component.all_move_poss); 
+                        component.Route_List[i] += component.all_move_poss - component.all_move_pass2;
                     }
                 }
-                component.all_move_poss = transform.position;
-                //component.transform.position = Handles.PositionHandle(component.transform.position, transform.rotation);
+                component.all_move_pass2 = component.all_move_poss;
 
             }
-            */
+
 
         }
 
@@ -443,7 +458,7 @@ public class AirFighter_Controller : MonoBehaviour
             if (vertexes.Count <= 0) return;
 
             if (!EditorApplication.isPlaying)
-                Gizmos.DrawLine(basePoss, vertexes[0] + pp);
+                Gizmos.DrawLine(basePoss, vertexes[0] + pp );
             //--- --- --- --- --- --- --- --- --- --- ---- --- ---- --- --- --- ---
             Gizmos.color = new Color32(145, 139, 244, 210);
             //GizmoType.Active の時は色を変える
@@ -461,7 +476,7 @@ public class AirFighter_Controller : MonoBehaviour
                 else
                 { Gizmos.DrawWireSphere(v3 , 0.1f); }
                 */
-                Gizmos.DrawWireSphere(v3 + pp, 0.1f);
+                Gizmos.DrawWireSphere(v3 + pp , 0.1f);
             }
 
             //線を引く
@@ -472,7 +487,7 @@ public class AirFighter_Controller : MonoBehaviour
                 { Gizmos.DrawLine(vertexes[i] , vertexes[i + 1] ); }
                 else
                 { Gizmos.DrawLine(vertexes[i] , vertexes[i + 1]); }*/
-                Gizmos.DrawLine(vertexes[i] + pp + airFighter.all_move_poss, vertexes[i + 1] + pp + airFighter.all_move_poss); ;
+                Gizmos.DrawLine(vertexes[i] + pp , vertexes[i + 1] + pp); ;
             }
 
         }

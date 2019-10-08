@@ -34,13 +34,6 @@ public class LoadingSystem : MonoBehaviour
         {
             GameManager.instance.GameState = 1;
             SceneManager.LoadScene("Main");
-            //SceneManager.LoadSceneAsync("wave0");
-            //SceneManager.LoadSceneAsync("wave1");
-            //SceneManager.LoadSceneAsync("wave2");
-            //SceneManager.LoadSceneAsync("wave3");
-            //SceneManager.LoadSceneAsync("wave4");
-            //SceneManager.LoadSceneAsync("wave5");
-            //SceneManager.LoadSceneAsync("wave6");
         }
     }
 }

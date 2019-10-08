@@ -47,14 +47,14 @@ public class Tough_Enemy : MonoBehaviour, IShootingDown
         GameManager.instance.Enemy_Count();
 
         player = GameManager.instance.Player;
-        ac.Launch_AriFighter();
+        //ac.Launch_AriFighter();
     }
 
     // Update is called once per frame
     private void Update()
     {
         if (!ac.isFring) return;
-        if (Distance_Player() < 9)
+        if (Distance_Player() < 20)
         {
             if (shootTime == 0)
             {
@@ -67,9 +67,9 @@ public class Tough_Enemy : MonoBehaviour, IShootingDown
             {
                 shootTime = 0;
                 muzzle.transform.LookAt(player.transform.position + new Vector3(
-                    Random.Range(-0.4f, 0.4f),
-                    Random.Range(-0.4f, 0.4f),
-                    Random.Range(-0.4f, 0.4f)));
+                    Random.Range(-0.3f, 0.3f),
+                    Random.Range(-0.3f, 0.3f),
+                    Random.Range(-0.3f, 0.3f)));
 
                 Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
                 return;

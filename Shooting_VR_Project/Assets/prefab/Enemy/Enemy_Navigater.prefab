@@ -45,12 +45,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterTime: 0
   centerPoint: {fileID: 0}
-  Route_List: []
-  airFighter_speed: 0.4
+  Route_List:
+  - {x: 0, y: 0, z: 80}
+  - {x: 0, y: 0, z: 160}
+  - {x: 0, y: 0, z: 240}
+  - {x: 0, y: 0, z: 320}
+  airFighter_speed: 0.1
   isFring: 0
   startRun: 1
   destroyModel: {fileID: 0}
-  onGizmo: 1
+  isDead: 0
+  onGizmo: 0
   onHandle: 0
   allMove: 0
   Edi_start_Poss: {x: 0, y: 0, z: 0}

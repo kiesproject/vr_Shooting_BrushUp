@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IShootingDown
     float time = 0;
     bool shootNegativeFlag = false;
 
-    float debuffTime = 0; //バフに使用するタイマー
+    //float debuffTime = 0; //バフに使用するタイマー
     bool isDebuff = false;
     float debuff_desmove_Per = 1;
     float debuff_desshoot_Per = 1;
@@ -90,7 +90,6 @@ public class Player : MonoBehaviour, IShootingDown
         {
             Input_Shoot();
         }
-        Chack_Debuff();
         Count_LocalTime();
 
         if (Input.GetKeyDown(KeyCode.G))
@@ -179,32 +178,28 @@ public class Player : MonoBehaviour, IShootingDown
 
     }
 
-    private void Chack_Debuff() //デバフの処理を行う
+    private IEnumerator Chack_Debuff() //デバフの処理を行う
     {
-        if (isDebuff)
-        {
-            debuffTime += Time.deltaTime;
-            debuff_desmove_Per = 0.8f; //移動割合
-            debuff_desshoot_Per = 0.5f; //ショット感覚割合
+        isDebuff = true;
+        debuff_desmove_Per = 0.5f;
+        debuff_desshoot_Per = 0.5f;
 
-            if (debuffTime >= 3f)
-            {
-                isDebuff = false;
-            }
-        }
-        else
-        {
-            debuffTime = 0;
-            debuff_desmove_Per = 1;
-            debuff_desshoot_Per = 1;
-        }
+        yield return new WaitForSeconds(2);
 
+        isDebuff = false;
+        debuff_desmove_Per = 1.0f;
+        debuff_desshoot_Per = 1.0f;
     }
 
     public void Set_Debuff()
     {
-        isDebuff = true;
-        debuffTime = 0;
+        StartCoroutine(Chack_Debuff());
+    }
+
+    public void Get_Debuff_value(out float m, out float s)
+    {
+        m = debuff_desmove_Per;
+        s = debuff_desshoot_Per;
     }
 
     //死亡したかどうか

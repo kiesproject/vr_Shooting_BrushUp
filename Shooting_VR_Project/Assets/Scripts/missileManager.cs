@@ -92,6 +92,8 @@ public class missileManager : MonoBehaviour
     {
         if (GameManager.instance.TargetEnemyList.Count == 0)
             return;
+        GameManager.instance.Start_Sort_TargetList();
+
 
         Milist = new List<GameObject>(GameManager.instance.TargetEnemyList);
         for (int i=0; i < missiles_pack.Length; i++)
@@ -119,7 +121,7 @@ public class missileManager : MonoBehaviour
                 missile_c.SetTarget(SelectMis(x * Width + y));
                 Debug.Log("[missileManager] 割り当て: " + (x * (Width-1) + y));
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.08f);
             }
         }
 

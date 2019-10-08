@@ -40,7 +40,8 @@ public class SeaneController : MonoBehaviour
         nowSceanIndex = 0;
 
         if (!StartLoad)
-        Scene_LoadOne();
+            Scene_LoadOne();
+            //Load_MainSeane();
 
         //デバッグ用
         PB = GameObject.FindGameObjectWithTag("PlayerBase");
@@ -120,10 +121,11 @@ public class SeaneController : MonoBehaviour
     void Scene_Unload()
     {
         if (_sceneSequence.Length == 0) return;
+        if (nowSceanIndex - 1 < 0) return;
 
         try
         {
-            SceneManager.UnloadSceneAsync(_sceneSequence[nowSceanIndex]);
+            SceneManager.UnloadSceneAsync(_sceneSequence[nowSceanIndex-1]);
         }
         catch { Debug.Log("Scene UnLoad Failed"); }
     }
@@ -141,6 +143,23 @@ public class SeaneController : MonoBehaviour
         //Destroy(o);
         Destroy(o2);
         SceneManager.LoadScene("Title");
+    }
+
+    public void Load_MainSeane()
+    {
+        
+
+        for (int i = 0; i < _sceneSequence.Length; i++)
+        {
+            SceneManager.LoadSceneAsync(_sceneSequence[i]);
+        }
+
+        for (int i = 1; i < _sceneSequence.Length; i++)
+        {
+            SceneManager.UnloadSceneAsync(_sceneSequence[i]);
+        }
+
+
     }
 
 }

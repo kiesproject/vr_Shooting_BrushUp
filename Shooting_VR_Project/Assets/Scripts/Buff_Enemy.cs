@@ -42,12 +42,12 @@ public class Buff_Enemy : MonoBehaviour, IShootingDown
             ac = gameObject.AddComponent<AirFighter_Controller>();
         }
 
-        max_hp = 8;
+        max_hp = 5;
         hp = max_hp;
 
         GameManager.instance.Enemy_Count();
         player = GameManager.instance.Player;
-        ac.Launch_AriFighter();
+        //ac.Launch_AriFighter();
     }
 
     // Update is called once per frame

@@ -245,6 +245,89 @@ public class GameManager : MonoBehaviour
             TargetEnemyList.Remove(o);
     }
 
+    public void Start_Sort_TargetList()
+    {
+        /*
+        Debug.Log("---Before List---");
+        foreach (GameObject o in TargetEnemyList)
+        {
+            Debug.Log("| " + Distance_PtoE(o));
+        }
+        */
+
+        int right = TargetEnemyList.Count - 1;
+        int left = 0;
+        Sort_TargetList(TargetEnemyList, left, right);
+
+        /*
+        Debug.Log("---After List---");
+        foreach (GameObject o in TargetEnemyList)
+        {
+            Debug.Log("| " + Distance_PtoE(o));
+        }
+        */
+        
+        //UnityEditor.EditorApplication.isPaused = true;
+    }
+
+    /// <summary>
+    /// EnemyTargetListをソートする
+    /// </summary>
+    private void Sort_TargetList(List<GameObject> list, int left, int right)
+    {
+        int pivot;
+
+        if (left < right)
+        {
+            pivot = partition(list, left, right);
+            Sort_TargetList(list, left, pivot - 1);
+            Sort_TargetList(list, pivot + 1, right);
+        }
+
+    }
+
+    private int partition(List<GameObject> list, int left, int right)
+    {
+        int i, j, pivot;
+        i = left;
+        j = right + 1;
+        pivot = left;
+
+        //Debug.Log("count: " + list.Count);
+
+        do
+        {
+            do { i++; /*Debug.Log("297: " + i)*/; if (i > list.Count-1) break; } while (Distance_PtoE(list[i]) < Distance_PtoE(list[pivot]));
+            do { j--; /*Debug.Log("298: " + i)*/; } while (Distance_PtoE(list[pivot]) < Distance_PtoE(list[j]));
+
+            if (i < j)
+            {
+                var dump = list[i];
+                list[i] = list[j];
+                list[j] = dump;
+            }
+        } while (i < j);
+
+        var dump2 = list[pivot];
+        list[pivot] = list[j];
+        list[j] = dump2;
+
+        return j;
+    }
+
+    /// <summary>
+    /// playerの座標から指定されたEnemeyの座標までの距離を算出する(2乗で扱う)
+    /// </summary>
+    /// <param name="enemyO"></param>
+    /// <returns></returns>
+    public float Distance_PtoE(GameObject enemyO)
+    {
+        Vector3 possP = Player.transform.position;
+        Vector3 possE = enemyO.transform.position;
+        return (possP - possE).sqrMagnitude;
+
+    }
+
     /// <summary>
     /// プレイヤーを取得する。()
     /// </summary>
