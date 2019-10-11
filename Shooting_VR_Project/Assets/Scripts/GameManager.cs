@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
 
         downCount++;
-        Debug.Log("[GameManager] <"+ gameObject.name +"> カウント後 " + downCount + "体撃破");
+        //Debug.Log("[GameManager] <"+ gameObject.name +"> カウント後 " + downCount + "体撃破");
 
     }
 

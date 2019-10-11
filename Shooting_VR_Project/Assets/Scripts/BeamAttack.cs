@@ -9,7 +9,7 @@ public class BeamAttack : MonoBehaviour
     [SerializeField]
     protected LayerMask layer = 0;
     protected GameObject explosion;
-    protected float damege = 5;
+    protected float damege = 4;
 
     private void Start()
     {

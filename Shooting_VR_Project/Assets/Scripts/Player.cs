@@ -71,7 +71,7 @@ public class Player : MonoBehaviour, IShootingDown
     IEnumerator Invincible()
     {
         isInvincible = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         isInvincible = false;
     }
 

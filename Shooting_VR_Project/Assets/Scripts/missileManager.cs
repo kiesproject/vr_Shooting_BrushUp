@@ -117,7 +117,7 @@ public class missileManager : MonoBehaviour
                 Missile_Bullet missile_c = missile.GetComponent<Missile_Bullet>();
                 if (missile_c == null) Debug.Log("入ってない");
                 missile_c.SetTarget(SelectMis(x * Width + y));
-                Debug.Log("[missileManager] 割り当て: " + (x * (Width-1) + y));
+                //Debug.Log("[missileManager] 割り当て: " + (x * (Width-1) + y));
 
                 yield return new WaitForSeconds(0.1f);
             }
