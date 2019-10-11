@@ -63,15 +63,7 @@ public class AirFighter_Controller : MonoBehaviour
         //Edi_start_Poss = transform.parent.position;
 
 
-        //---プレイヤー以外---
-        if (!startRun)
-        {
-            destroyModel.gameObject.SetActive(false);
-        }
-        else
-        {
-            Launch_AriFighter();
-        }
+        
 
     }
 
@@ -82,6 +74,16 @@ public class AirFighter_Controller : MonoBehaviour
 
             PL = GM.Player.GetComponent<Player>();
             baseTime = PL.Get_LocalTime();
+
+            //---プレイヤー以外---
+            if (!startRun)
+            {
+                destroyModel.gameObject.SetActive(false);
+            }
+            else
+            {
+                Launch_AriFighter();
+            }
         }
     }
 
@@ -123,7 +125,9 @@ public class AirFighter_Controller : MonoBehaviour
     //戦闘機を飛ばす
     public void Launch_AriFighter()
     {
-        PL = GM.Player.GetComponent<Player>();
+        
+        PL = GameManager.instance.Player.GetComponent<Player>();
+        Debug.Log(GM);
         int RouteCount = Route_List.Count; //データ数
         //ルートのデータのチェック
         if (RouteCount <= 0) return;

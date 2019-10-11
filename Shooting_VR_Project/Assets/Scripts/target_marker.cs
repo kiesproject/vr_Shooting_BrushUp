@@ -93,18 +93,23 @@ public class target_marker : MonoBehaviour
     //画面に写ってる時に
     private void OnWillRenderObject()
     {
-        
-        
+
+
         //visible = false;
-        if (Camera.current.name == "Camera")
+        
+        if (Camera.current != null)
         {
-            //Debug.Log("見えてる :" + this.gameObject.name);
-            visible = true;
+            Debug.Log(Camera.current.name);
+            if (Camera.current.name == "Camera")
+            {
+                //Debug.Log("見えてる :" + this.gameObject.name);
+                visible = true;
+            }
         }
     }
 
     private void OnDestroy()
     {
-        GM.TargetEnemyDead(target);
+        GameManager.instance.TargetEnemyDead(target);
     }
 }
