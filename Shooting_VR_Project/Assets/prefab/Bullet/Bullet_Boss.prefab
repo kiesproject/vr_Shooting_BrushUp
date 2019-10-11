@@ -73,7 +73,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 512
-  timer: 5
+  timer: 3
   damege: 2
   explosion: {fileID: 7600581544840939158, guid: 2b831254f3520dd468e36615104ae304,
     type: 3}
@@ -143,8 +143,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.009586334
-        value: 0.5137825
+        time: 0.016506195
+        value: 0.27184677
         inSlope: 0
         outSlope: 0
         tangentMode: 0
