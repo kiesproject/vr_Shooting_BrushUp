@@ -291,6 +291,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d091e39932677b4281f289da3001861, type: 3}
+--- !u!1 &308505340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8982631860359077176, guid: 35a8d91630626f346b932598d4b5c76e,
+    type: 3}
+  m_PrefabInstance: {fileID: 423969822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &308505343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308505340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e74ef07e782a9149a9032d3c4c87a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprite:
+  - {fileID: 1074204421}
+  - {fileID: 1369456377}
 --- !u!1001 &423969822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -473,11 +494,6 @@ PrefabInstance:
       propertyPath: Route_List.Array.data[18].z
       value: 1580
       objectReference: {fileID: 0}
-    - target: {fileID: 8982631859389470791, guid: 35a8d91630626f346b932598d4b5c76e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5726242367975475813, guid: 35a8d91630626f346b932598d4b5c76e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -487,6 +503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982631859389470791, guid: 35a8d91630626f346b932598d4b5c76e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a8d91630626f346b932598d4b5c76e, type: 3}
@@ -664,6 +685,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9544fd7bb7d4875458905eab84193868, type: 3}
+--- !u!212 &1074204421 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1854138740332761188, guid: 35a8d91630626f346b932598d4b5c76e,
+    type: 3}
+  m_PrefabInstance: {fileID: 423969822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1310853178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,6 +849,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f800e604c36f9b34c9540651a18cc12b, type: 3}
+--- !u!212 &1369456377 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3331456074688626498, guid: 35a8d91630626f346b932598d4b5c76e,
+    type: 3}
+  m_PrefabInstance: {fileID: 423969822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1452082745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -837,12 +870,12 @@ PrefabInstance:
     - target: {fileID: 223482914793757282, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 223482914793757283, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.51
+      value: -0.91
       objectReference: {fileID: 0}
     - target: {fileID: 223482914793757283, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
@@ -852,7 +885,7 @@ PrefabInstance:
     - target: {fileID: 223482914793757283, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.77
+      value: 7.48
       objectReference: {fileID: 0}
     - target: {fileID: 223482914793757283, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
@@ -897,12 +930,12 @@ PrefabInstance:
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: Route_List.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: Route_List.Array.data[0].y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
@@ -912,12 +945,12 @@ PrefabInstance:
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: Route_List.Array.data[0].x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: Route_List.Array.data[0].z
-      value: 6.262652
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
@@ -937,7 +970,7 @@ PrefabInstance:
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: encounterTime
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
@@ -952,6 +985,11 @@ PrefabInstance:
     - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
         type: 3}
       propertyPath: startRun
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037840777683382081, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
+        type: 3}
+      propertyPath: airFighter_speed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224518702178162698, guid: 9c9d1bd0a772d2a48b7d682fa88e8556,
@@ -1245,6 +1283,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BOSS_Re
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756879440696182779, guid: 04ff927b26bc30046bb86e44452f14fe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2831267115429285758, guid: 04ff927b26bc30046bb86e44452f14fe,
         type: 3}

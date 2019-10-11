@@ -45,24 +45,35 @@ public class target_marker : MonoBehaviour
     void Update()
     {
         if (GM.Player == null) return;
-        if (Vector3.Distance(transform.position, GM.Player.transform.position) <= dis)
+        if (visible && (GM.Distance_PtoE(this.gameObject) <= dis * dis))
         {
-            //Debug.Log("visible:" + visible);
-            if (visible)
+            //Debug.Log("3333");
+            //リストに入れる
+            if (!GM.TargetEnemyList.Contains(target))
+                GM.TargetEnemyList.Add(target);
+        }
+        else
+        {
+            //リストから除く
+            if (GM.TargetEnemyList.Contains(target))
+                GM.TargetEnemyList.Remove(target);
+        }
+        
+
+        /*
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, GM.Player.transform.position);
+        if (Physics.Raycast(ray, out hit, dis))
+        {
+            if (hit.collider.gameObject == GM.Player)
             {
-                //Debug.Log("3333");
-                //リストに入れる
-                if (!GM.TargetEnemyList.Contains(target))
-                    GM.TargetEnemyList.Add(target);
-            }
-            else
-            {
-                //リストから除く
-                if (GM.TargetEnemyList.Contains(target))
-                    GM.TargetEnemyList.Remove(target);
+
             }
         }
-        //visible = false;
+        */
+
+
+        visible = false;
 
         /*
         if (visible == true )
@@ -93,14 +104,16 @@ public class target_marker : MonoBehaviour
     //画面に写ってる時に
     private void OnWillRenderObject()
     {
+        visible = true; return;
 
 
         //visible = false;
-        
+        Debug.Log(Camera.current);
+
         if (Camera.current != null)
         {
-            Debug.Log(Camera.current.name);
-            if (Camera.current.name == "Camera")
+            Debug.Log("「"+Camera.current.name+"」");
+            if (Camera.current.name == "Preview Camera")
             {
                 //Debug.Log("見えてる :" + this.gameObject.name);
                 visible = true;

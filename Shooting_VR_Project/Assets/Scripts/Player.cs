@@ -42,6 +42,7 @@ public class Player : MonoBehaviour, IShootingDown
     private RaycastHit hit;
     private int layerMask;
     private bool rayHit;
+    private AimMaker am;
 
     //private float player_speed;
 
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour, IShootingDown
         hp = max_hp;
 
         layerMask = bullet_N.GetComponent<Bullet>().layer;
+        am = GetComponent<AimMaker>();
     }
 
     private void FixedUpdate()
@@ -83,7 +85,7 @@ public class Player : MonoBehaviour, IShootingDown
     // Update is called once per frame
     private void Update()
     {
-
+        Debug.Log(isInvincible);
         Raying_Aim();
 
         if (GM.GameState != 2)
@@ -101,14 +103,18 @@ public class Player : MonoBehaviour, IShootingDown
 
     private void Raying_Aim()
     {
+        am.ChangeAiming(false);
+
         //Rayの処理
         Ray ray = new Ray(transform.position, transform.forward);
-
+        //Debug.DrawRay(transform.position, transform.forward, Color.red);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             Debug.Log(hit.collider.gameObject.name);
+
             rayHit = true;
+            am.ChangeAiming(true) ;
         }
         else
         {

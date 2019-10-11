@@ -127,7 +127,7 @@ public class AirFighter_Controller : MonoBehaviour
     {
         
         PL = GameManager.instance.Player.GetComponent<Player>();
-        Debug.Log(GM);
+        //Debug.Log(GM);
         int RouteCount = Route_List.Count; //データ数
         //ルートのデータのチェック
         if (RouteCount <= 0) return;

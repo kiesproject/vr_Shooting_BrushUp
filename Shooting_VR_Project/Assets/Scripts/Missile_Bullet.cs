@@ -60,7 +60,7 @@ public class Missile_Bullet : Bullet
                 target = null;
                 Explosion();
             }
-            mtime += Time.deltaTime * 2.5f;
+            mtime += Time.deltaTime * 1.8f;
             if (mtime >= 1) //ターゲットまでたどり着いたらダメージを与える。
             {
                 Damage();

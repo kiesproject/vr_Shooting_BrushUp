@@ -51,7 +51,7 @@ public class bossAttack : MonoBehaviour, IShootingDown
         GetComponent<Boss_effect>().enabled = false;
 
         GameManager.instance.Enemy_Count();
-        max_hp = 500;
+        max_hp = 1200;
         hp = max_hp;
 
         //first_poss = transform.position;

@@ -42,7 +42,7 @@ public class Normal_Enemy : MonoBehaviour ,IShootingDown
             ac = gameObject.AddComponent<AirFighter_Controller>();
         }
 
-        max_hp = 6;
+        max_hp = 4;
         hp = max_hp;
 
         GameManager.instance.Enemy_Count();
