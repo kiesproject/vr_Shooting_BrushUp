@@ -60,52 +60,62 @@ public class PlayerControl : MonoBehaviour
         moveVector = (Vector3.right - (dx * Vector3.right)) * speed * horizontal - (Vector3.up - (dy * Vector3.up)) * speed * vertical;
 
         //移動する
-        transform.localPosition += moveVector * Time.deltaTime * 10;
+        transform.localPosition += moveVector * Time.deltaTime * 5;
         PlayerModel.transform.localPosition = transform.localPosition  -0.04f* Vector3.forward - 0.05f * moveVector;
         //PlayerModel.transform.LookAt(transform.position);
 
         RotateHead();
-        PlayerModel.transform.localRotation = Quaternion.Euler(360 * headVector);
+        PlayerModel.transform.localRotation = Quaternion.Euler(240 * headVector);
         //PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-50 * vertical, 50 * horizontal, -50 * horizontal));
     }
 
     void VirInputUpdate()
     {
         float d = 0.3f;
-        float pls = 0.01f;
+        float pls = 0.05f;
         float reg = 1.5f;
 
-        if (d < horizontal && horizontal < 1)
+        if (d < horizontal )
         {
             horizontal_r += pls;
             if (horizontal_r > 1) horizontal_r = 1;
         }
-        else if(-1 < horizontal && horizontal < -d)
+
+        if(horizontal < -d)
         {
             horizontal_r += -pls;
             if (horizontal_r < -1) horizontal_r = -1;
         }
 
-        if (d < vertical && vertical < 1)
+        if (d < vertical )
         {
             vertical_r += pls;
             if (vertical_r > 1) vertical_r = 1;
         }
-        else if (-1 < vertical && vertical < -d)
+
+        if (vertical < -d)
         {
             vertical_r += -pls;
             if (vertical_r < -1) vertical_r = -1;
         }
-        
+
+
         //入力外
+        
         if (-d < horizontal && horizontal < d)
+        {
+            horizontal_r += -horizontal_r / 10;
+        }
+
+        if (-d < vertical && vertical < d)
         {
             vertical_r += -vertical_r / 10;
         }
 
-        
 
-        Debug.Log("verr: " + vertical_r + "horr: " + horizontal_r);
+        Debug.Log("ver: " + vertical + " hor: " + horizontal);
+
+        Debug.Log("verr: " + vertical_r + " horr: " + horizontal_r);
     }
 
     //本体を回す
@@ -121,9 +131,9 @@ public class PlayerControl : MonoBehaviour
         //Debug.Log("x: (" + x.x + ", "+ x.y + ", " + x.z +")");
         //Debug.Log("x: " + x+ "y: " + y + "z: " + z);
 
-        if (Mathf.Abs(x.y) < 0.01f) x = Vector3.zero;
-        if (Mathf.Abs(y.x) < 0.01f) y = Vector3.zero;
-        if (Mathf.Abs(z.z) < 0.01f) z = Vector3.zero;
+        //if (Mathf.Abs(x.y) < 0.01f) x = Vector3.zero;
+        //if (Mathf.Abs(y.x) < 0.01f) y = Vector3.zero;
+        //if (Mathf.Abs(z.z) < 0.01f) z = Vector3.zero;
 
         //方向ベクトルを設定(ゆっくりもどる)
         headVector = (x + y - z);
