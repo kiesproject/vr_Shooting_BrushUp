@@ -85,7 +85,7 @@ public class Player : MonoBehaviour, IShootingDown
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(isInvincible);
+        //Debug.Log(isInvincible);
         Raying_Aim();
 
         if (GM.GameState != 2)

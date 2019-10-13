@@ -21,6 +21,11 @@ public class SoundManager : MonoBehaviour
     Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
     AudioSource source;
 
+    string cullentBGMname;
+
+    [SerializeField]
+    private float baseVolume = 1;
+
 
     //一番最初に実行
     private void Awake()
@@ -39,6 +44,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
+        source.volume = baseVolume;
 
         for (int i=0; i < filename.Length; i++)
         {
@@ -86,7 +92,7 @@ public class SoundManager : MonoBehaviour
     }
 
     //BGMを再生
-    public void PlayBGM()
+    public void PlayBGM(string name)
     {
         try
         {
@@ -95,11 +101,44 @@ public class SoundManager : MonoBehaviour
         catch
         {
             Debug.Log("音楽ファイルが見つかりません");
+            return;
         }
 
         if (source.clip != null)
         {
+            cullentBGMname = name;
             source.Play();
+        }
+
+    }
+
+    public void StopBGM()
+    {
+        source.Stop();
+    }
+
+    public void SmoothPlayBGM(string name)
+    {
+        StartCoroutine(Smoothing(name));
+    }
+
+    private IEnumerator Smoothing(string name)
+    {
+        if (source.isPlaying)
+        {
+            for (int i = 10; i > 0; i--)
+            {
+                source.volume = baseVolume * i / 10;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        PlayBGM(name);
+
+        for (int i = 0; i < 10; i++)
+        {
+            source.volume = baseVolume * i / 10;
+            yield return new WaitForSeconds(0.1f);
         }
 
     }

@@ -19,6 +19,9 @@ public class VR_Controller2 : MonoBehaviour
     float hor = 0;
     float ver = 0;
 
+    float delay_hor = 0;
+    float delay_ver = 0;
+
     //
     const float s = 0.2f;
 
@@ -38,12 +41,24 @@ public class VR_Controller2 : MonoBehaviour
 
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
         GetMove_Control(out hor, out ver);
+
+        if (Mathf.Abs(hor - delay_hor) < 0.001)
+            hor = delay_hor;
+
+        if (Mathf.Abs(ver - delay_ver) < 0.001)
+            ver = delay_ver;
+
         if (GM.VR_Swicth)GM.Move_key(hor, ver);
         //Debug.Log("hor: " + hor + " | ver:" + ver);
+
+        delay_hor = hor;
+        delay_ver = ver;
     }
 
     void GetMove_Control(out float x, out float y)
@@ -54,12 +69,9 @@ public class VR_Controller2 : MonoBehaviour
         Vector3 dv = arrow_object.position - transform.position;
         Debug.DrawLine(transform.position, arrow_object.position, Color.blue);
         Vector3 v = player_transform.InverseTransformDirection(dv);
-        //Debug.Log("v: " + v);
 
         var dis = Vector3.Distance(arrow_object.position, transform.position);
 
-        //Debug.Log("v.sqr: " + v.sqrMagnitude);
-        //Debug.Log("dis: " + dis);
         x = v.x / dis;
         y = v.z / dis;
 

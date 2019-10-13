@@ -17,6 +17,7 @@ public class LoadingSystem : MonoBehaviour
     {
 
         startbutton = GameObject.Find("StartButton").GetComponent<Image>();
+        SoundManager.instance.PlayBGM("opening");
     }
 
     // Update is called once per frame

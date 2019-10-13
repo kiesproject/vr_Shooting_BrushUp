@@ -53,25 +53,39 @@ public class PlayerControl : MonoBehaviour
         LimitMove(out dx, out dy);
 
         //入力情報を設定
-        moveVector = (Vector3.right - (dx * Vector3.right)) * speed * horizontal + (Vector3.up - (dy * Vector3.up)) * speed * vertical;
+        moveVector = (Vector3.right - (dx * Vector3.right)) * speed * horizontal - (Vector3.up - (dy * Vector3.up)) * speed * vertical;
 
         //移動する
-        transform.localPosition += moveVector * Time.deltaTime;
+        transform.localPosition += moveVector * Time.deltaTime * 10;
         PlayerModel.transform.localPosition = transform.localPosition  -0.04f* Vector3.forward - 0.05f * moveVector;
-        PlayerModel.transform.LookAt(transform.position);
+        //PlayerModel.transform.LookAt(transform.position);
 
-
-        PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-50 * vertical, 50 * horizontal, -50 * horizontal));
+        RotateHead();
+        PlayerModel.transform.localRotation = Quaternion.Euler(360 * headVector);
+        //PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-50 * vertical, 50 * horizontal, -50 * horizontal));
     }
 
     //本体を回す
     void RotateHead()
     {
-        float m = 80.0f;
+        float m = 350.0f;
         float d = 5.0f;
+
+        var x = Vector3.up * (horizontal - headVector.x) / d;
+        var y = Vector3.right * (vertical - headVector.y) / d;
+        var z = Vector3.forward * (horizontal - headVector.z) / d;
+        //Debug.Log("x: (" + x.x + ", "+ x.y + ", " + x.z +")");
+        //Debug.Log("x: " + x+ "y: " + y + "z: " + z);
+
+        if (Mathf.Abs(x.y) < 0.01f) x = Vector3.zero;
+        if (Mathf.Abs(y.x) < 0.01f) y = Vector3.zero;
+        if (Mathf.Abs(z.z) < 0.01f) z = Vector3.zero;
+
         //方向ベクトルを設定(ゆっくりもどる)
-        headVector = Vector3.right * (horizontal - headVector.x) / d + Vector3.up * (vertical - headVector.y) / d;
-        Debug.Log("headVector:" + headVector);
+        headVector = (x + y - z);
+        headVector = new Vector3(y.x, x.y, -z.z);
+
+        //Debug.Log("headVector:" + headVector);
 
         //プレイヤーモデルを動かす
     }
@@ -85,7 +99,7 @@ public class PlayerControl : MonoBehaviour
         if ((limit - a <= transform.localPosition.x) && (horizontal > 0))
         {
             float distance = Mathf.Abs((limit - a) - transform.localPosition.x) * (1.0f / a);
-            Debug.Log("distance.x:" + distance);
+            //Debug.Log("distance.x:" + distance);
             if (distance > 1)
             {
                 dx = 1;
@@ -99,7 +113,7 @@ public class PlayerControl : MonoBehaviour
         {
 
             float distance = Mathf.Abs((-limit + a) - transform.localPosition.x)* (1.0f / a);
-            Debug.Log("distance.x:" + distance);
+            //Debug.Log("distance.x:" + distance);
             if (distance > 1)
             {
                 dx = 1;
@@ -114,10 +128,10 @@ public class PlayerControl : MonoBehaviour
             dx = 0;
         }
 
-        if ((limit - a <= transform.localPosition.y) && (vertical > 0))
+        if ((limit - a <= transform.localPosition.y) && (vertical < 0))
         {
             float distance = Mathf.Abs((limit - a) - transform.localPosition.y) * (1.0f / a);
-            Debug.Log("distance.y:" + distance);
+            //Debug.Log("distance.y:" + distance);
             if (distance > 1)
             {
                 dy = 1;
@@ -127,11 +141,11 @@ public class PlayerControl : MonoBehaviour
                 dy = distance;
             }
         }
-        else if ((transform.localPosition.y <= -limit + a) && (vertical < 0))
+        else if ((transform.localPosition.y <= -limit + a) && (vertical > 0))
         {
 
             float distance = Mathf.Abs((-limit + a) - transform.localPosition.y) * (1.0f / a);
-            Debug.Log("distance.y:" + distance);
+            //Debug.Log("distance.y:" + distance);
             if (distance > 1)
             {
                 dy = 1;

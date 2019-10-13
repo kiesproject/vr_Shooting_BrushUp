@@ -19,6 +19,7 @@ public class Boss_effect : MonoBehaviour
     void Start()
     {
         boss = GetComponent<bossAttack>();
+        SoundManager.instance.SmoothPlayBGM("boss");
     }
 
     // Update is called once per frame
