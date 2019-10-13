@@ -61,9 +61,9 @@ public class VR_Controller : MonoBehaviour
         //controller = (VR_Action_Pose.GetLocalRotation(SteamVR_Input_Sources.RightHand).eulerAngles);
         
         controller = _transform.localRotation.eulerAngles;
-        Debug.Log("controller: "+controller);
+        //Debug.Log("controller: "+controller);
         Conv_Input(controller,out hor,out ver);
-        Debug.Log("hor: " + hor + " | ver: " + ver);
+        //Debug.Log("hor: " + hor + " | ver: " + ver);
         //GM.Move_key(hor, ver);
 
     }

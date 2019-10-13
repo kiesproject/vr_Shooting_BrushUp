@@ -28,6 +28,7 @@ public class VR_Controller2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.LogError("どこやねん！！！");
         try
         {
             GM = GameManager.instance;
@@ -48,17 +49,19 @@ public class VR_Controller2 : MonoBehaviour
     {
         GetMove_Control(out hor, out ver);
 
+        /*
         if (Mathf.Abs(hor - delay_hor) < 0.001)
             hor = delay_hor;
 
         if (Mathf.Abs(ver - delay_ver) < 0.001)
             ver = delay_ver;
+        */
 
         if (GM.VR_Swicth)GM.Move_key(hor, ver);
         //Debug.Log("hor: " + hor + " | ver:" + ver);
-
-        delay_hor = hor;
-        delay_ver = ver;
+        
+        //delay_hor = hor;
+        //delay_ver = ver;
     }
 
     void GetMove_Control(out float x, out float y)

@@ -8,6 +8,10 @@ public class PlayerControl : MonoBehaviour
     private GameManager GM;
     private float horizontal;
     private float vertical;
+
+    private float horizontal_r;
+    private float vertical_r;
+
     private PlayerBase playerBase;
     private SteamVR_Action_Pose VR_Action_Pose = SteamVR_Actions._default.Pose;
 
@@ -65,15 +69,55 @@ public class PlayerControl : MonoBehaviour
         //PlayerModel.transform.localRotation = Quaternion.Euler(new Vector3(-50 * vertical, 50 * horizontal, -50 * horizontal));
     }
 
+    void VirInputUpdate()
+    {
+        float d = 0.3f;
+        float pls = 0.01f;
+        float reg = 1.5f;
+
+        if (d < horizontal && horizontal < 1)
+        {
+            horizontal_r += pls;
+            if (horizontal_r > 1) horizontal_r = 1;
+        }
+        else if(-1 < horizontal && horizontal < -d)
+        {
+            horizontal_r += -pls;
+            if (horizontal_r < -1) horizontal_r = -1;
+        }
+
+        if (d < vertical && vertical < 1)
+        {
+            vertical_r += pls;
+            if (vertical_r > 1) vertical_r = 1;
+        }
+        else if (-1 < vertical && vertical < -d)
+        {
+            vertical_r += -pls;
+            if (vertical_r < -1) vertical_r = -1;
+        }
+        
+        //入力外
+        if (-d < horizontal && horizontal < d)
+        {
+            vertical_r += -vertical_r / 10;
+        }
+
+        
+
+        Debug.Log("verr: " + vertical_r + "horr: " + horizontal_r);
+    }
+
     //本体を回す
     void RotateHead()
     {
         float m = 350.0f;
         float d = 5.0f;
 
-        var x = Vector3.up * (horizontal - headVector.x) / d;
-        var y = Vector3.right * (vertical - headVector.y) / d;
-        var z = Vector3.forward * (horizontal - headVector.z) / d;
+        VirInputUpdate();
+        var x = Vector3.up * (horizontal_r - headVector.x) / d;
+        var y = Vector3.right * (vertical_r - headVector.y) / d;
+        var z = Vector3.forward * (horizontal_r - headVector.z) / d;
         //Debug.Log("x: (" + x.x + ", "+ x.y + ", " + x.z +")");
         //Debug.Log("x: " + x+ "y: " + y + "z: " + z);
 
