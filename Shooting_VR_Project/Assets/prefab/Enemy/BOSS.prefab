@@ -115,14 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69badca34baccd143a2e7f23edc63017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  property: 0
-  Route_List: []
-  airFighter_speed: 1
-  hp: 10
-  max_hp: 10
-  onGizmo: 0
-  onHandle: 0
-  Edi_start_Poss: {x: 0, y: 0, z: 0}
   bossmuzzle1: {fileID: 9107920041891986210}
   bossmuzzle2: {fileID: 7441798524862948242}
   bossmuzzle3: {fileID: 2415201920519989569}
@@ -140,7 +132,10 @@ MonoBehaviour:
     type: 3}
   BossSpeed: 1
   first_poss: {x: 0, y: 0, z: 0}
+  Boss_Object: {fileID: 0}
   boss_stopFlag: 0
+  max_hp: 2000
+  hp: 2000
 --- !u!136 &2737584279726085611
 CapsuleCollider:
   m_ObjectHideFlags: 0

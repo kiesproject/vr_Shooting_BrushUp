@@ -71,45 +71,71 @@ public class PlayerControl : MonoBehaviour
 
     void VirInputUpdate()
     {
-        float d = 0.3f;
+        float d  = 0.04f;
+        float d2 = 0.1f;
         float pls = 0.05f;
         float reg = 1.5f;
 
-        if (d < horizontal )
+        if (d2 < horizontal )
         {
-            horizontal_r += pls;
+            horizontal_r += pls * Mathf.Abs( horizontal);
             if (horizontal_r > 1) horizontal_r = 1;
         }
 
+        /*
+        if (d < horizontal && horizontal < d2)
+        {
+            horizontal_r += pls * 0.5f;
+        }*/
+
         if(horizontal < -d)
         {
-            horizontal_r += -pls;
+            horizontal_r += -pls * Mathf.Abs( horizontal);
             if (horizontal_r < -1) horizontal_r = -1;
         }
 
-        if (d < vertical )
+        /*
+        if (-d2 < horizontal && horizontal < -d)
         {
-            vertical_r += pls;
+            horizontal_r += -pls * 0.5f;
+        }*/
+
+        //--- --- --- --- ---
+
+        if (d2 < vertical )
+        {
+            vertical_r += pls * Mathf.Abs( vertical);
             if (vertical_r > 1) vertical_r = 1;
         }
 
+        /*
+        if (d < vertical && vertical < d2)
+        {
+            vertical_r += pls * 0.5f;
+        }*/
+
         if (vertical < -d)
         {
-            vertical_r += -pls;
+            vertical_r += -pls * Mathf.Abs( vertical);
             if (vertical_r < -1) vertical_r = -1;
         }
 
+        /*
+        if (-d2 < vertical && vertical < -d)
+        {
+            vertical_r += -pls * 0.5f;
+        }*/
 
         //入力外
-        
+
         if (-d < horizontal && horizontal < d)
         {
-            horizontal_r += -horizontal_r / 10;
+            horizontal_r += -horizontal_r / 100;
         }
 
         if (-d < vertical && vertical < d)
         {
-            vertical_r += -vertical_r / 10;
+            vertical_r += -vertical_r / 100;
         }
 
 
@@ -137,7 +163,7 @@ public class PlayerControl : MonoBehaviour
 
         //方向ベクトルを設定(ゆっくりもどる)
         headVector = (x + y - z);
-        headVector = new Vector3(y.x, x.y, -z.z);
+        headVector = new Vector3(y.x, x.y, 0);
 
         //Debug.Log("headVector:" + headVector);
 
