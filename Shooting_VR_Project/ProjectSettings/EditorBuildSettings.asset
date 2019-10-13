@@ -59,4 +59,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stages_b/waveb_6.unity
     guid: 872bd97c053752e4bbea65238933bbb7
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 3c3710c271828864490ccdcee880b587
+  - enabled: 1
+    path: Assets/Scenes/Launch.unity
+    guid: bd2064329db3847468b5e86c7c67f367
   m_configObjects: {}

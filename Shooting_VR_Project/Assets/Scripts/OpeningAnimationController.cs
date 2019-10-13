@@ -43,7 +43,7 @@ public class OpeningAnimationController : MonoBehaviour
         //チュートリアルシーンへ遷移
         if (time >= 19.0f)
         {
-            //SceneManager.LoadScene("Tutorial");
+            SceneManager.LoadScene("Tutorial");
         }
     }
 

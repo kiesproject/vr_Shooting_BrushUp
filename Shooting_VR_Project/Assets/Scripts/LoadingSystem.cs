@@ -34,7 +34,7 @@ public class LoadingSystem : MonoBehaviour
         if(startbutton.fillAmount > 0.99)
         {
             GameManager.instance.GameState = 1;
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Launch");
         }
     }
 }
