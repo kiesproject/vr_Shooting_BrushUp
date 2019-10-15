@@ -18,6 +18,7 @@ public class Game_Setuper : MonoBehaviour
         GameManager.instance.Player_Update();
         GameManager.instance.GameState = 1;
         SoundManager.instance.SmoothPlayBGM("battle");
+        GameManager.instance.Put_StartUI();
     }
 
     // Update is called once per frame

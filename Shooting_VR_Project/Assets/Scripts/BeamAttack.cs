@@ -8,6 +8,7 @@ public class BeamAttack : MonoBehaviour
     float BeamTime;
     [SerializeField]
     protected LayerMask layer = 0;
+    [SerializeField]
     protected GameObject explosion;
     protected float damege = 5;
 
@@ -15,19 +16,25 @@ public class BeamAttack : MonoBehaviour
     {
         BeamTime = 0;
         beam = this.GetComponent<ParticleSystem>();
+        beam.Stop();
     }
 
+    //private void OnParticleTrigger()
     private void OnParticleCollision(GameObject obj)
     {
+        //GameObject obj = beam.trigger.GetCollider(0).gameObject;
+        Debug.Log("obj: " + obj);
+
         var fighter = obj.gameObject.GetComponent<IShootingDown>();
+        Debug.Log("is: " + fighter);
+
+
         if (fighter != null)
         {
-            if (CompareLayer(layer, obj.gameObject.layer))
-            {
-                //ダメージを与える
-                fighter.Damage(damege);
-            }
-            Explosion();
+            //ダメージを与える
+            fighter.Damage(damege);
+            Explosion(obj);
+            //Destroy(this.gameObject);
         }
     }
 
@@ -37,20 +44,16 @@ public class BeamAttack : MonoBehaviour
         return ((1 << layer) & layerMask) != 0;
     }
 
-    protected void Explosion()
+    protected void Explosion(GameObject gameObject)
     {
         if (explosion != null)
-        { Instantiate(explosion, this.transform.position, this.transform.rotation); }
+        { Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation); }
     }
 
     private void Update()
     {
-        beam.Play();
-        BeamTime += Time.deltaTime;
-        if (BeamTime > 5.0f)
-        {
-            Destroy(this.gameObject);
-        }
+        //beam.Play();
+        
     }
 
 }

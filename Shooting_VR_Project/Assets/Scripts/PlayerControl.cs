@@ -139,9 +139,9 @@ public class PlayerControl : MonoBehaviour
         }
 
 
-        Debug.Log("ver: " + vertical + " hor: " + horizontal);
+        //Debug.Log("ver: " + vertical + " hor: " + horizontal);
 
-        Debug.Log("verr: " + vertical_r + " horr: " + horizontal_r);
+        //Debug.Log("verr: " + vertical_r + " horr: " + horizontal_r);
     }
 
     //本体を回す

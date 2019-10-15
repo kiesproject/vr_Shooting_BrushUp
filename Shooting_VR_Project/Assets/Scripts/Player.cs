@@ -111,7 +111,7 @@ public class Player : MonoBehaviour, IShootingDown
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
 
             rayHit = true;
             am.ChangeAiming(true) ;
@@ -181,6 +181,17 @@ public class Player : MonoBehaviour, IShootingDown
 
         GameObject bullet1 = Instantiate(bullet_N, muzzle1.transform.position, muzzle1.transform.rotation) as GameObject;
         GameObject bullet2 = Instantiate(bullet_N, muzzle2.transform.position, muzzle1.transform.rotation) as GameObject;
+        var b1 = bullet1.GetComponent<Chase_Bullet>();
+        var b2 = bullet2.GetComponent<Chase_Bullet>();
+        if (b1 != null)
+        {
+            if (rayHit) b1.enemy_Poss = hit.collider.gameObject;
+        }
+
+        if (b2 != null)
+        {
+            b2.player_Poss = gameObject;
+        }
 
     }
 

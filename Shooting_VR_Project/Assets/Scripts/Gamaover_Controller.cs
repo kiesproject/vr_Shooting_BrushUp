@@ -29,6 +29,7 @@ public class Gamaover_Controller : MonoBehaviour
         {
 
             alert = true;
+            GameManager.instance.Put_FailedUI();
             StartCoroutine(UI_controll());
             GlitchFx.intensity = 0.3f;
         }

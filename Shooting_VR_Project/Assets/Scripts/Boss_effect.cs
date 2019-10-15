@@ -20,6 +20,7 @@ public class Boss_effect : MonoBehaviour
     {
         boss = GetComponent<bossAttack>();
         SoundManager.instance.SmoothPlayBGM("boss");
+        GameManager.instance.Put_WarningUI();
     }
 
     // Update is called once per frame
@@ -51,11 +52,11 @@ public class Boss_effect : MonoBehaviour
 
         if (state == 2)
         {
-            transform.Rotate(Vector3.up * 3); 
+            //transform.Rotate(Vector3.up * 3); 
             timeCounter = 0;
-            boss.first_poss = transform.position;
-            boss.enabled = true;
-            boss.boss_stopFlag = true;
+            //boss.first_poss = transform.position;
+            //boss.enabled = true;
+            //boss.boss_stopFlag = true;
         }
 
     }

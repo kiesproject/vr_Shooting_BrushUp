@@ -35,7 +35,7 @@ public class bossAttack : MonoBehaviour, IShootingDown
     [SerializeField]
     private GameObject Boss_Object;
 
-    public bool boss_stopFlag = false;
+    //public bool boss_stopFlag = false;
 
     //---- ---- ----- ----- ----- ----- ----- ----- ---- ----- ----- -----
     [SerializeField]

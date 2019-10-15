@@ -53,9 +53,10 @@ public class Score : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         Sort2();
-        yield return new WaitForSeconds(20);
-        SeaneController.sceanController.GameReset();
-
+        while (!Input.GetKeyDown(KeyCode.P))
+        {
+            SeaneController.sceanController.GameReset();
+        }
     }
 
     public void Sort2()
@@ -90,7 +91,7 @@ public class Score : MonoBehaviour
             }
         }
 
-        Debug.Log("sorted_save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
+        //Debug.Log("sorted_save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
 
 
         for (int i = 0; i < score.Count - 1; i++)

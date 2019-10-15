@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
     public int GameState = 0;
     private int GameStatedump = 0;
 
+    private MissionUI missionUI;
+
     public void Enemy_Count()
     {
         enemyCounter++;
@@ -117,6 +119,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Player = GameObject.Find("Player");
+        missionUI = GetComponent<MissionUI>();
 
     }
 
@@ -337,5 +340,18 @@ public class GameManager : MonoBehaviour
         Player = GameObject.Find("Player");
     }
 
+    public void Put_StartUI()
+    {
+        StartCoroutine(missionUI.StartUI());
+    }
 
+    public void Put_FailedUI()
+    {
+        StartCoroutine(missionUI.FailedUI());
+    }
+
+    public void Put_WarningUI()
+    {
+        StartCoroutine(missionUI.WarnigUI());
+    }
 }

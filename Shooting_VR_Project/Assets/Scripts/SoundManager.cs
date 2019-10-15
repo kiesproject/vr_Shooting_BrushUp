@@ -124,7 +124,8 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator Smoothing(string name)
     {
-        if (source.isPlaying)
+        Debug.Log("[SM] source: " + source);
+        if (source.clip != null || source.isPlaying)
         {
             for (int i = 10; i > 0; i--)
             {
