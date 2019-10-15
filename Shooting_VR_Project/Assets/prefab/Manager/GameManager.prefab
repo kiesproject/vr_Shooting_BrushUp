@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9222861691201372789}
   - component: {fileID: 9222861691201372790}
-  - component: {fileID: 8661380479051921496}
-  - component: {fileID: 9222861690752331917}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -54,43 +52,4 @@ MonoBehaviour:
   downCount: 0
   enemyCounter: 0
   GameState: 0
---- !u!114 &8661380479051921496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9222861691201372791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb566d53cf466c40a4141aefa0986bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startUI: {fileID: 0}
-  failedUI: {fileID: 0}
-  warningUI: {fileID: 0}
---- !u!114 &9222861690752331917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9222861691201372791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6600854ca63ea2d45835dc19bbf0b926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Score_Board: {fileID: 0}
-  text:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  score: 00000000000000000000000000000000
-  clearScore: 0
-  text_clear:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  missionUI: {fileID: 0}

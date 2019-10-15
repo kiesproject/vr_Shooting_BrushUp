@@ -191,10 +191,14 @@ public class Message : MonoBehaviour
                 break;
             case 6:
                 t = TransitionTime[0];
-                for (int i = 1; i < enemys.Length; i++)
+                try
                 {
-                    enemys[i].gameObject.SetActive(true);
+                    for (int i = 1; i < enemys.Length; i++)
+                    {
+                        enemys[i].gameObject.SetActive(true);
+                    }
                 }
+                catch { }
                 break;
             case 7:
                 t = TransitionTime[1];

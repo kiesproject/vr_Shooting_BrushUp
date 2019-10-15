@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     public int GameState = 0;
     private int GameStatedump = 0;
 
+    [SerializeField]
     private MissionUI missionUI;
 
     public void Enemy_Count()
@@ -119,7 +120,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Player = GameObject.Find("Player");
-        missionUI = GetComponent<MissionUI>();
+        //missionUI = GetComponent<MissionUI>();
 
     }
 

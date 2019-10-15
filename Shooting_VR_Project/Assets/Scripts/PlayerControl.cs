@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.instance.Player == null) return;
         //移動のメソッド
         Move_Player_Meta();
         //RotateHead();
