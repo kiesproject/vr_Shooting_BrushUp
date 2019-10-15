@@ -22,9 +22,9 @@ public class Player : MonoBehaviour, IShootingDown
     bool shootNegativeFlag = false;
 
     //float debuffTime = 0; //バフに使用するタイマー
-    bool isDebuff = false;
-    float debuff_desmove_Per = 1;
-    float debuff_desshoot_Per = 1;
+    private bool isDebuff = false;
+    public float debuff_desmove_Per = 1;
+    private float debuff_desshoot_Per = 1;
 
     private SteamVR_Action_Boolean Action_Boolean = SteamVR_Actions._default.GrabPinch;
 
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour, IShootingDown
     {
         isDebuff = true;
         debuff_desmove_Per = 0.5f;
-        debuff_desshoot_Per = 0.5f;
+        debuff_desshoot_Per = 1.5f;
 
         yield return new WaitForSeconds(2);
 

@@ -58661,6 +58661,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mission_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 220489262450707231, guid: 88dd26e98d70f0a47ac09b045c6df99c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6673669208362392310, guid: 88dd26e98d70f0a47ac09b045c6df99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -58775,11 +58780,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 220489262450707231, guid: 88dd26e98d70f0a47ac09b045c6df99c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6661055080257047645, guid: 88dd26e98d70f0a47ac09b045c6df99c,
         type: 3}
@@ -59748,5 +59748,10 @@ PrefabInstance:
       propertyPath: text_clear.Array.data[3]
       value: 
       objectReference: {fileID: 690935382}
+    - target: {fileID: 9222861691201372790, guid: 5d091e39932677b4281f289da3001861,
+        type: 3}
+      propertyPath: VR_Swicth
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d091e39932677b4281f289da3001861, type: 3}

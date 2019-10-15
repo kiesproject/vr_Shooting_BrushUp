@@ -19,7 +19,6 @@ public class PlayerControl : MonoBehaviour
     private float speed = 1.0f;
     [SerializeField]
     private GameObject PlayerModel;
-    
 
     private Vector3 headVector;
 
@@ -61,7 +60,8 @@ public class PlayerControl : MonoBehaviour
 
         //移動する
         transform.localPosition += moveVector * Time.deltaTime * 5;
-        PlayerModel.transform.localPosition = transform.localPosition  -0.04f* Vector3.forward - 0.05f * moveVector;
+        var pl = GameManager.instance.Player.GetComponent<Player>();
+        PlayerModel.transform.localPosition = transform.localPosition  - 0.05f * moveVector * pl.debuff_desmove_Per;
         //PlayerModel.transform.LookAt(transform.position);
 
         RotateHead();
@@ -240,4 +240,5 @@ public class PlayerControl : MonoBehaviour
             dy = 0;
         }
     }
+
 }
