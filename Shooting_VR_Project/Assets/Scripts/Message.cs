@@ -80,6 +80,7 @@ public class Message : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         AC = player.GetComponent<AirFighter_Controller>();
         speed = AC.airFighter_speed;
+        GameManager.instance.Player_Update();
     }
 
     // Update is called once per frame

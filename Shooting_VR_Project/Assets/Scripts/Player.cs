@@ -186,10 +186,12 @@ public class Player : MonoBehaviour, IShootingDown
         if (b1 != null)
         {
             if (rayHit) b1.enemy_Poss = hit.collider.gameObject;
+            b1.player_Poss = gameObject;
         }
 
         if (b2 != null)
         {
+            if (rayHit) b2.enemy_Poss = hit.collider.gameObject;
             b2.player_Poss = gameObject;
         }
 

@@ -72,7 +72,7 @@ public class AirFighter_Controller : MonoBehaviour
         if (PL == null)
         {
 
-            PL = GM.Player.GetComponent<Player>();
+            PL = GameManager.instance.Player.GetComponent<Player>();
             baseTime = PL.Get_LocalTime();
 
             //---プレイヤー以外---
