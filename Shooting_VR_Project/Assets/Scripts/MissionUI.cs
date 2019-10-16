@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MissionUI : MonoBehaviour
 {
+    public static MissionUI instance;
+
     [SerializeField]
     Image startUI;
 
@@ -13,6 +15,17 @@ public class MissionUI : MonoBehaviour
 
     [SerializeField]
     Image warningUI;
+
+    private void Awake()
+    {
+        if (instance == null){
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -74,5 +87,19 @@ public class MissionUI : MonoBehaviour
 
     }
 
+    public void Put_StartUI()
+    {
+        StartCoroutine(StartUI());
+    }
+
+    public void Put_FailedUI()
+    {
+        StartCoroutine(FailedUI());
+    }
+
+    public void Put_WarningUI()
+    {
+        StartCoroutine(WarnigUI());
+    }
 
 }

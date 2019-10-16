@@ -20,7 +20,19 @@ public class Boss_effect : MonoBehaviour
     {
         boss = GetComponent<bossAttack>();
         SoundManager.instance.SmoothPlayBGM("boss");
-        GameManager.instance.Put_WarningUI();
+        MissionUI.instance.Put_WarningUI();
+
+        StartCoroutine(Alert());
+        
+    }
+
+    IEnumerator Alert()
+    {
+        SoundManager.instance.Instance_Sound(GameManager.instance.Player.transform.position, "alert", 1);
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.Instance_Sound(GameManager.instance.Player.transform.position, "alert", 1);
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.Instance_Sound(GameManager.instance.Player.transform.position, "alert", 1);
     }
 
     // Update is called once per frame

@@ -29,7 +29,7 @@ public class Gamaover_Controller : MonoBehaviour
         {
 
             alert = true;
-            GameManager.instance.Put_FailedUI();
+            MissionUI.instance.Put_FailedUI();
             StartCoroutine(UI_controll());
             GlitchFx.intensity = 0.3f;
         }
@@ -46,7 +46,7 @@ public class Gamaover_Controller : MonoBehaviour
         int mi = 20;
         for (int i=0; i < mi; i++)
         {
-            Debug.Log("[GC] 表示: " + (float)i/mi);
+            //Debug.Log("[GC] 表示: " + (float)i/mi);
             text.color = new Color(1, 0f, 0f,(float)(i + 1) / mi);
             GlitchFx.intensity = 0.3f * (float)(i ) / mi;
 
