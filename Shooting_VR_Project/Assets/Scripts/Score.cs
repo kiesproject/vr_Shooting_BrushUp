@@ -44,6 +44,8 @@ public class Score : MonoBehaviour
 
     IEnumerator StartSort()
     {
+        SoundManager.instance.SmoothPlayBGM("result");
+
         Debug.Log("ソート開始");
         isPlayScore = true;
         for(int i=0; i<text_clear.Length; i++)

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
-public class Message : MonoBehaviour
+public class Message_launch : MonoBehaviour
 {
     // メッセージUI
     private Text messageText;
@@ -86,20 +86,11 @@ public class Message : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TaskEvent();
 
         // 全てのチュートリアルタスクを終了したら、シーン遷移
-        if (taskNum == Messages.Length - 1)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            elapsedTime = 0f;
-            GameManager.instance.GameState = 1;
-            SceneManager.LoadScene("Main");
-            //return;
-        }
 
         //テスト用 PlayerBaseとAsteroidsの座標
-        if(test)
+        if (test)
         {
             //Debug.Log(player.transform.position);
             //Debug.Log(astroids.transform.position);
@@ -111,7 +102,7 @@ public class Message : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            if(elapsedTime >= t)
+            if (elapsedTime >= t)
             {
                 if (!isEndMessage)
                 {
@@ -120,7 +111,7 @@ public class Message : MonoBehaviour
                 else
                 {
                     taskNum++;
-                    
+
                     SetMessage(Messages[taskNum], taskNum);
                 }
 

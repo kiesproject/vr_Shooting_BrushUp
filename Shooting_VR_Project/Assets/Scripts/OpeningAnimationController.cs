@@ -20,6 +20,7 @@ public class OpeningAnimationController : MonoBehaviour
         gateTopAnim = gateTop.GetComponent<Animator>();
         gateBottomAnim = gateBottom.GetComponent<Animator>();
         GameManager.instance.Player_Update();
+        SoundManager.instance.SmoothPlayBGM("Launch");
     }
 
     // Update is called once per frame

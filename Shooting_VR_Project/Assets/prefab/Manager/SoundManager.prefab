@@ -56,7 +56,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 69859a6e7c71a054cbfa7ed1101983c0, type: 3}
   - {fileID: 8300000, guid: b84a2ec83388238468431fb34bc46151, type: 3}
   - {fileID: 8300000, guid: 3e23caf4e99b26a4b9a803c503393f7c, type: 3}
-  - {fileID: 8300000, guid: 4cb9bf0e352140144ad3e13d7f09b0d4, type: 3}
+  - {fileID: 8300000, guid: b1b61af89d1db1443938ac8a233bb3e8, type: 3}
+  - {fileID: 8300000, guid: 26b68f276af8f7b4ca036cb14e1b2ec0, type: 3}
+  - {fileID: 8300000, guid: d98cb8c871253cd46a37c6c8efafe0e4, type: 3}
   filename:
   - shoot
   - missile
@@ -69,7 +71,9 @@ MonoBehaviour:
   - opening
   - battle
   - boss
-  - chain_explosion
+  - alert
+  - result
+  - Launch
   soundObject: {fileID: 4133181281530881375, guid: c54ce9139ff1fb24da3c5355dec792fe,
     type: 3}
   beepAccept: 1
