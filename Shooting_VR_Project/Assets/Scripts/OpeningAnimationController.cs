@@ -19,6 +19,7 @@ public class OpeningAnimationController : MonoBehaviour
     {
         gateTopAnim = gateTop.GetComponent<Animator>();
         gateBottomAnim = gateBottom.GetComponent<Animator>();
+        GameManager.instance.Player_Update();
     }
 
     // Update is called once per frame

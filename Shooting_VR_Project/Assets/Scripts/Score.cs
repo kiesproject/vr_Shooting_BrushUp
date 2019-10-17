@@ -44,6 +44,7 @@ public class Score : MonoBehaviour
 
     IEnumerator StartSort()
     {
+        Debug.Log("ソート開始");
         isPlayScore = true;
         for(int i=0; i<text_clear.Length; i++)
         {
@@ -55,8 +56,9 @@ public class Score : MonoBehaviour
         Sort2();
         while (!Input.GetKeyDown(KeyCode.P))
         {
-            SeaneController.sceanController.GameReset();
+            yield return null;
         }
+        SeaneController.sceanController.GameReset();
     }
 
     public void Sort2()
@@ -64,16 +66,20 @@ public class Score : MonoBehaviour
         filePath = Application.dataPath + "/" + ".savedata.json";
         save = new SaveData();
 
+        Debug.Log("Load開始");
         Load();
-        Debug.Log("save: " + save.score1[0]+", " + save.score1[1] + ", " + save.score1[2] + ", " + save.score1[3]);
+        Debug.Log("Load終了");
+
+        //Debug.Log("save: " + save.score1[0]+", " + save.score1[1] + ", " + save.score1[2] + ", " + save.score1[3]);
 
         score = new List<int>(save.score1);
         clearScore = GameManager.instance.downCount;
         score[0] = clearScore; //クリア時のスコアを代入する
         int[] vs = { 1, 0, 0, 0 };
 
-        Debug.Log(" save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
+        //Debug.Log(" save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
 
+        Debug.Log("ソート本文開始");
         for (int i = 0; i < score.Count - 1; i++)
         {
             for (int j = 0; j < score.Count-1-i; j++)
@@ -90,6 +96,7 @@ public class Score : MonoBehaviour
                 }
             }
         }
+        Debug.Log("ソート本文終了");
 
         //Debug.Log("sorted_save: " + score[0] + ", " + score[1] + ", " + score[2] + ", " + score[3]);
 
@@ -101,9 +108,15 @@ public class Score : MonoBehaviour
                 text[i + 1].color = Color.yellow;
         }
 
+        Debug.Log("スコアに記入完了");
+
         text[0].text = clearScore.ToString();
         save.score1 = score;
+
+        Debug.Log("Save開始");
         Save();
+        Debug.Log("Save終了");
+
         Score_Board.SetActive(true);
     }
 
@@ -189,12 +202,16 @@ public class Score : MonoBehaviour
     {
         if (File.Exists(filePath))
         {
+            Debug.Log("ファイルパスオープン");
             StreamReader streamReader;
             streamReader = new StreamReader(filePath);
             string data = streamReader.ReadToEnd();
+            Debug.Log("ファイル読み取り");
             streamReader.Close();
+            Debug.Log("ファイルクローズ");
 
             save = JsonUtility.FromJson<SaveData>(data);
         }
+        Debug.Log("ロード完了");
     }
 }
