@@ -56,7 +56,7 @@ public class Chase_Bullet : Bullet
     {
         for (int i = 0; i < 30; i++)
         {
-            transform.position = Vector3.Lerp(player_Poss.transform.position, enemy_Poss.transform.position, i/30);
+            transform.position = Vector3.Lerp(player_Poss.transform.position, enemy_Poss.transform.position, (float)i/30);
             yield return null;
         }
         Damage();
